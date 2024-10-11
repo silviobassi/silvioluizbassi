@@ -36,15 +36,15 @@ public class Loader implements ApplicationRunner {
             String[] campos = line.split(";");
 
             switch (campos[0].toUpperCase()) {
-                case "M":
+                case "M" -> {
                     matricula = new Matricula();
                     matricula.setNumeroDaMatricula(Long.parseLong(campos[1]));
                     matricula.setDataDaCompra(LocalDateTime.parse(campos[2]));
                     matricula.setAtiva(Boolean.parseBoolean(campos[3]));
 
                     matriculaService.adicionar(matricula);
-                    break;
-                case "BC":
+                }
+                case "BC" -> {
                     bootcamp = new Bootcamp();
                     bootcamp.setTitulo(campos[1]);
                     bootcamp.setDescricao(campos[2]);
@@ -56,8 +56,8 @@ public class Loader implements ApplicationRunner {
                     bootcamp.setTipoDeBootcamp(campos[8]);
 
                     Objects.requireNonNull(matricula).setCurso(bootcamp);
-                    break;
-                case "EP":
+                }
+                case "EP" -> {
                     especializacao = new Especializacao();
                     especializacao.setTitulo(campos[1]);
                     especializacao.setDescricao(campos[2]);
@@ -69,8 +69,8 @@ public class Loader implements ApplicationRunner {
                     especializacao.setNivelDeEspecializacao(campos[8]);
 
                     Objects.requireNonNull(matricula).setCurso(especializacao);
-                    break;
-                case "I":
+                }
+                case "I" -> {
                     instrutor = new Instrutor();
                     instrutor.setNome(campos[1]);
                     instrutor.setDataNascimento(LocalDateTime.parse(campos[2]));
@@ -84,16 +84,16 @@ public class Loader implements ApplicationRunner {
                     if (especializacao != null) {
                         especializacao.getInstrutores().add(instrutor);
                     }
-                    break;
-                case "A":
+                }
+                case "A" -> {
                     aluno = new Aluno();
                     aluno.setNome(campos[1]);
                     aluno.setDataNascimento(LocalDateTime.parse(campos[2]));
                     aluno.setGenero(Genero.valueOf(campos[3]));
 
                     Objects.requireNonNull(matricula).setAluno(aluno);
-                    break;
-                case "E":
+                }
+                case "E" -> {
                     Endereco endereco = new Endereco();
                     endereco.setLogradouro(campos[1]);
                     endereco.setNumero(campos[2]);
@@ -109,8 +109,8 @@ public class Loader implements ApplicationRunner {
                     if (instrutor != null) {
                         instrutor.setEndereco(endereco);
                     }
-                    break;
-                case "CT":
+                }
+                case "CT" -> {
                     Contato contato = new Contato();
                     contato.setEmail(campos[1]);
                     contato.setWhatsapp(campos[2]);
@@ -121,10 +121,9 @@ public class Loader implements ApplicationRunner {
                     if (aluno != null) {
                         aluno.setContato(contato);
                     }
-                    break;
-                default:
-                    System.out.println("Tipo de pessoa não identificado: " + campos[0]);
-                    break;
+                }
+                default -> System.out.println("Tipo de pessoa não identificado: " + campos[0]);
+
             }
 
             line = reader.readLine();
