@@ -134,7 +134,7 @@ public class Loader implements ApplicationRunner {
 
         for (Matricula matriculaAtual : matriculaService.obterMatriculas()) {
             System.out.printf("Matrícula: %s%n", matriculaAtual);
-            System.out.printf("Instrutor: %s%n", matriculaAtual.getCurso().getInstrutores());
+            System.out.printf("Instrutores: %s%n", matriculaAtual.getCurso().getInstrutores());
         }
     }
 }
