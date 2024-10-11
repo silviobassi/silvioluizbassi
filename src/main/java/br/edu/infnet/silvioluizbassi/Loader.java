@@ -103,24 +103,18 @@ public class Loader implements ApplicationRunner {
                     endereco.setEstado(campos[6]);
                     endereco.setCep(campos[7]);
 
-                    if (aluno != null) {
-                        aluno.setEndereco(endereco);
-                    }
-                    if (instrutor != null) {
-                        instrutor.setEndereco(endereco);
-                    }
+                    Objects.requireNonNull(aluno).setEndereco(endereco);
+                    Objects.requireNonNull(instrutor).setEndereco(endereco);
+
                 }
                 case "CT" -> {
                     Contato contato = new Contato();
                     contato.setEmail(campos[1]);
                     contato.setWhatsapp(campos[2]);
 
-                    if (instrutor != null) {
-                        instrutor.setContato(contato);
-                    }
-                    if (aluno != null) {
-                        aluno.setContato(contato);
-                    }
+                    Objects.requireNonNull(instrutor).setContato(contato);
+                    Objects.requireNonNull(aluno).setContato(contato);
+
                 }
                 default -> System.out.println("Tipo de pessoa não identificado: " + campos[0]);
 
