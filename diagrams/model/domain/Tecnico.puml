@@ -1,5 +1,0 @@
-@startuml
-class Tecnico{
-    - tipoDeHabilitacao:String
-}
-@enduml

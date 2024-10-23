@@ -1,21 +1,25 @@
 package br.edu.infnet.silvioluizbassi.model.service;
 
 import br.edu.infnet.silvioluizbassi.model.domain.Matricula;
+import br.edu.infnet.silvioluizbassi.model.repository.MatriculaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class MatriculaService {
-    private final Map<Long, Matricula> mapaMatriculas = new HashMap<>();
 
-    public void adicionar(Matricula matricula) {
-        mapaMatriculas.put(matricula.getNumeroDaMatricula(), matricula);
+    private final MatriculaRepository matriculaRepository;
+
+    public MatriculaService(MatriculaRepository matriculaRepository) {
+        this.matriculaRepository = matriculaRepository;
+    }
+
+    public Matricula adicionar(Matricula matricula) {
+        return matriculaRepository.save(matricula);
     }
 
     public Collection<Matricula> obterMatriculas() {
-        return mapaMatriculas.values();
+        return matriculaRepository.findAll();
     }
 }

@@ -8,7 +8,6 @@
 !include Genero.puml
 !include Instrutor.puml
 !include Matricula.puml
-!include Tecnico.puml
 !include Endereco.puml
 
 Pessoa "1" --> "1 -contato" Contato
@@ -19,7 +18,6 @@ Aluno --|> Pessoa
 Instrutor --|> Pessoa
 
 Bootcamp --|> Curso
-Tecnico --|> Curso
 Especialista --|> Curso
 
 Curso "1..*" --> "0..* -instrutores" Instrutor
