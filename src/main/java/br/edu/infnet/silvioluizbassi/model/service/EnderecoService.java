@@ -4,6 +4,8 @@ import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
 import br.edu.infnet.silvioluizbassi.model.repository.EnderecoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EnderecoService {
 
@@ -15,5 +17,9 @@ public class EnderecoService {
 
     public Endereco adicionar(Endereco endereco) {
         return enderecoRepository.save(endereco);
+    }
+
+    public List<Endereco> obterEnderecos() {
+        return enderecoRepository.findAll();
     }
 }
