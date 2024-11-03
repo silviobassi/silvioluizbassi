@@ -51,7 +51,7 @@ public class LoaderMatriculas implements ApplicationRunner {
 
             Matricula matricula = new Matricula();
             matricula.setNumeroDaMatricula(Long.parseLong(campos[1]));
-            matricula.setDataDaCompra(LocalDateTime.parse(campos[2]));
+            matricula.setDataMatricula(LocalDateTime.parse(campos[2]));
             matricula.setAtiva(Boolean.parseBoolean(campos[3]));
 
             Objects.requireNonNull(matricula).setAluno(alunos.get(countAlunos));

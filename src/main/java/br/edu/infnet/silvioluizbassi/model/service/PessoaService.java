@@ -39,4 +39,12 @@ public class PessoaService {
     public List<Instrutor> obterInstrutores() {
         return instrutorRepository.findAll();
     }
+
+    public long countAlunos() {
+        return alunoRepository.count();
+    }
+
+    public long countInstrutores() {
+        return instrutorRepository.count();
+    }
 }

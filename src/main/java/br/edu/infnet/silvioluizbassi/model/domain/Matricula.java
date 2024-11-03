@@ -17,7 +17,7 @@ public class Matricula {
     private Integer id;
 
     private long numeroDaMatricula;
-    private LocalDateTime dataDaCompra;
+    private LocalDateTime dataMatricula;
     private boolean ativa;
 
     @ManyToOne(optional = false)
@@ -30,7 +30,7 @@ public class Matricula {
     public String toString() {
         return String.format(
                 "Matricula{numeroDaMatricula=%d, dataDaCompra=%s, ativa=%b, curso=%s, aluno=%s}",
-                numeroDaMatricula, dataDaCompra, ativa, curso, aluno
+                numeroDaMatricula, dataMatricula, ativa, curso, aluno
         );
     }
 }

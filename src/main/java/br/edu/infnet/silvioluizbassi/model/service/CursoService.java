@@ -38,4 +38,16 @@ public class CursoService {
     public List<Bootcamp> obterBootcamps() {
         return bootcampRepository.findAll();
     }
+
+    public long countCursos() {
+        return cursoRepository.count();
+    }
+
+    public long countEspecializacoes() {
+        return especializacaoRepository.count();
+    }
+
+    public long countBootcamps() {
+        return bootcampRepository.count();
+    }
 }
