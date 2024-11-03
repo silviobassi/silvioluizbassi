@@ -15,7 +15,7 @@ public class EnderecoService {
         this.enderecoRepository = enderecoRepository;
     }
 
-    public Endereco adicionar(Endereco endereco) {
+    public Endereco incluir(Endereco endereco) {
         return enderecoRepository.save(endereco);
     }
 

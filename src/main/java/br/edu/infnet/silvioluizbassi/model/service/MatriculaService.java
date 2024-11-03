@@ -15,7 +15,7 @@ public class MatriculaService {
         this.matriculaRepository = matriculaRepository;
     }
 
-    public Matricula adicionar(Matricula matricula) {
+    public Matricula incluir(Matricula matricula) {
         return matriculaRepository.save(matricula);
     }
 

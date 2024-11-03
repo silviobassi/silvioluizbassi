@@ -23,19 +23,19 @@ public class CursoService {
         this.bootcampRepository = bootcampRepository;
     }
 
-    public Curso adicionar(Curso curso) {
+    public Curso incluir(Curso curso) {
         return cursoRepository.save(curso);
     }
 
-    public List<Curso> obterListaCursos() {
+    public List<Curso> obterCursos() {
         return cursoRepository.findAll();
     }
 
-    public List<Especializacao> obterListaEspecializacoes() {
+    public List<Especializacao> obterEspecializacoes() {
         return especializacaoRepository.findAll();
     }
 
-    public List<Bootcamp> obterListaBootcamps() {
+    public List<Bootcamp> obterBootcamps() {
         return bootcampRepository.findAll();
     }
 }

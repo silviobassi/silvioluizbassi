@@ -11,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Component
 @Order(2)
@@ -53,7 +52,7 @@ public class LoaderPessoas implements ApplicationRunner {
 
                     instrutor.setEndereco(enderecos.get(countEnderecos));
 
-                    pessoaService.adicionar(instrutor);
+                    pessoaService.incluir(instrutor);
 
                     countEnderecos++;
                 }
@@ -69,7 +68,7 @@ public class LoaderPessoas implements ApplicationRunner {
                     aluno.setEndereco(enderecos.get(countEnderecos));
                     aluno.setContato(contato);
 
-                    pessoaService.adicionar(aluno);
+                    pessoaService.incluir(aluno);
 
                     countEnderecos++;
                 }

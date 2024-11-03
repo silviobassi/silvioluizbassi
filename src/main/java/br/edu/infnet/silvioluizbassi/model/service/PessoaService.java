@@ -24,19 +24,19 @@ public class PessoaService {
         this.instrutorRepository = instrutorRepository;
     }
 
-    public Pessoa adicionar(Pessoa pessoa) {
+    public Pessoa incluir(Pessoa pessoa) {
         return pessoaRepository.save(pessoa);
     }
 
-    public List<Aluno> obterListaAlunos() {
+    public List<Aluno> obterAlunos() {
         return alunoRepository.findAll();
     }
 
-    public List<Pessoa> obterListaPessoas() {
+    public List<Pessoa> obterPessoas() {
         return pessoaRepository.findAll();
     }
 
-    public List<Instrutor> obterListaInstrutores() {
+    public List<Instrutor> obterInstrutores() {
         return instrutorRepository.findAll();
     }
 }

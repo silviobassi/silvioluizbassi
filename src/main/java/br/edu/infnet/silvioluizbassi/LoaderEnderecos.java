@@ -36,7 +36,7 @@ public class LoaderEnderecos implements ApplicationRunner {
             if (!campos[0].equalsIgnoreCase("E")) throw new Exception("❌ Não há endereços a serem carregados!");
 
             Endereco endereco = localizacaoService.findByCep(campos[7]);
-            enderecoService.adicionar(endereco);
+            enderecoService.incluir(endereco);
 
             line = reader.readLine();
         }

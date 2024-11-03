@@ -38,8 +38,8 @@ public class LoaderMatriculas implements ApplicationRunner {
 
         String line = reader.readLine();
 
-        List<Aluno> alunos = pessoaService.obterListaAlunos();
-        List<Curso> cursos = cursoService.obterListaCursos();
+        List<Aluno> alunos = pessoaService.obterAlunos();
+        List<Curso> cursos = cursoService.obterCursos();
 
         int countAlunos = 0;
         int countCursos = 0;
@@ -61,7 +61,7 @@ public class LoaderMatriculas implements ApplicationRunner {
             countAlunos++;
             countCursos++;
 
-            matriculaService.adicionar(matricula);
+            matriculaService.incluir(matricula);
             line = reader.readLine();
 
         }

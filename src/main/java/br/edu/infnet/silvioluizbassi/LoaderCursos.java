@@ -31,7 +31,7 @@ public class LoaderCursos implements ApplicationRunner {
 
         String line = reader.readLine();
 
-        List<Instrutor> instrutores = pessoaService.obterListaInstrutores();
+        List<Instrutor> instrutores = pessoaService.obterInstrutores();
         int countInstrutores = 0;
 
         while (line != null) {
@@ -51,7 +51,7 @@ public class LoaderCursos implements ApplicationRunner {
                     bootcamp.setNivel(NivelBootcamp.valueOf(campos[9]));
 
                     bootcamp.getInstrutores().add(instrutores.get(countInstrutores));
-                    cursoService.adicionar(bootcamp);
+                    cursoService.incluir(bootcamp);
                     countInstrutores++;
                 }
                 case "EP" -> {
@@ -67,10 +67,10 @@ public class LoaderCursos implements ApplicationRunner {
                     especializacao.setEstagioObrigatorio(Boolean.parseBoolean(campos[9]));
 
                     especializacao.getInstrutores().add(instrutores.get(countInstrutores));
-                    cursoService.adicionar(especializacao);
+                    cursoService.incluir(especializacao);
                     countInstrutores++;
 
-                    cursoService.adicionar(especializacao);
+                    cursoService.incluir(especializacao);
                 }
                 default -> throw new Exception("❌ Não há cursos a serem carregados!");
 
