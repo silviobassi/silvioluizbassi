@@ -13,6 +13,7 @@ import lombok.Setter;
 public class Aluno extends Pessoa {
 
     private boolean bolsista;
+    private boolean enem;
 
     @Override
     public String toString() {

@@ -1,4 +1,4 @@
-EP;Engenharia de Software;Pós-graduação em Engenharia de Software .NET;6650.0;60;Conhecimento básico em .NET;true;true;Certificado Infnet
-EP;Arquitetura de Software;Curso avançado de Arquitetura de Software;8660.0;60;Experiência em desenvolvimento;true;true;Certificado Infnet
-BC;Curso de .NET;Curso avançado de .NET;800.0;60;Conhecimento em .NET;true;true;Imergir no mundo .NET
-BC;Curso de React;Curso avançado de React;760.0;60;Conhecimento em React;true;true;Imergir no mundo React
+EP;Engenharia de Software;Pós-graduação em Engenharia de Software .NET;6650.0;60;Conhecimento básico em .NET;true;true;Certificado Infnet;true
+EP;Arquitetura de Software;Curso avançado de Arquitetura de Software;8660.0;60;Experiência em desenvolvimento;true;true;Certificado Infnet;false
+BC;Curso de .NET;Curso avançado de .NET;800.0;60;Conhecimento em .NET;true;true;Imergir no mundo .NET;INTERMEDIARIO
+BC;Curso de React;Curso avançado de React;760.0;60;Conhecimento em React;true;true;Imergir no mundo React;BASICO

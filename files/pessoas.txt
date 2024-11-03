@@ -1,7 +1,7 @@
 CT;email4@example.com;987654321
-A;João Silva;1990-01-01T00:00:00;MASCULINO;true;1;1
+A;João Silva;1990-01-01T00:00:00;MASCULINO;true;false
 CT;email5@example.com;987654321
-A;Maria Oliveira;1985-05-15T00:00:00;FEMININO;false;6;6
+A;Maria Oliveira;1985-05-15T00:00:00;FEMININO;false;true
 CT;email6@example.com;987654321
 I;João Silva;1990-01-01T00:00:00;MASCULINO;Formacao5;Especialidade5;2;2
 CT;email1@example.com;123456789

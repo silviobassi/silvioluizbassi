@@ -64,6 +64,7 @@ public class LoaderPessoas implements ApplicationRunner {
                     aluno.setDataNascimento(LocalDateTime.parse(campos[2]));
                     aluno.setGenero(Genero.valueOf(campos[3]));
                     aluno.setBolsista(Boolean.parseBoolean(campos[4]));
+                    aluno.setEnem(Boolean.parseBoolean(campos[5]));
 
                     aluno.setEndereco(enderecos.get(countEnderecos));
                     aluno.setContato(contato);

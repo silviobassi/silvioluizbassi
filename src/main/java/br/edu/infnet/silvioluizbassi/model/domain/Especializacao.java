@@ -10,11 +10,12 @@ import lombok.Setter;
 @Entity
 @Table(name = "tespecializacao")
 public class Especializacao extends Curso {
-    private String nivelDeEspecializacao;
+    private String tipoDeEspecializacao;
+    private boolean estagioObrigatorio;
 
     @Override
     public String toString() {
         return String.format("Especializacao{titulo='%s', descricao='%s', valor=%.2f, cargaHoraria=%d, nivelDeEspecializacao='%s'}",
-                getTitulo(), getDescricao(), getValor(), getCargaHoraria(), nivelDeEspecializacao);
+                getTitulo(), getDescricao(), getValor(), getCargaHoraria(), tipoDeEspecializacao);
     }
 }
