@@ -47,4 +47,12 @@ public class PessoaService {
     public long countInstrutores() {
         return instrutorRepository.count();
     }
+
+    public long countPessoas() {
+        return pessoaRepository.count();
+    }
+
+    public Aluno obterAlunoPorId(Integer id) {
+        return alunoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Aluno não encontrado"));
+    }
 }

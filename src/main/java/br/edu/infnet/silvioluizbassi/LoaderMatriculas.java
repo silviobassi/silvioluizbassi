@@ -1,7 +1,8 @@
 package br.edu.infnet.silvioluizbassi;
 
-import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
-import br.edu.infnet.silvioluizbassi.model.domain.Curso;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequestId;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.CursoRequestId;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
 import br.edu.infnet.silvioluizbassi.model.domain.Matricula;
 import br.edu.infnet.silvioluizbassi.model.service.CursoService;
 import br.edu.infnet.silvioluizbassi.model.service.MatriculaService;
@@ -14,8 +15,6 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
 
 @Component
 @Order(4)
@@ -38,11 +37,8 @@ public class LoaderMatriculas implements ApplicationRunner {
 
         String line = reader.readLine();
 
-        List<Aluno> alunos = pessoaService.obterAlunos();
-        List<Curso> cursos = cursoService.obterCursos();
-
-        int countAlunos = 0;
-        int countCursos = 0;
+        int countAlunos = (int) pessoaService.countAlunos();
+        int countCursos = (int) cursoService.countCursos();
 
         while (line != null) {
             String[] campos = line.split(";");
@@ -54,14 +50,17 @@ public class LoaderMatriculas implements ApplicationRunner {
             matricula.setDataMatricula(LocalDateTime.parse(campos[2]));
             matricula.setAtiva(Boolean.parseBoolean(campos[3]));
 
-            Objects.requireNonNull(matricula).setAluno(alunos.get(countAlunos));
 
-            matricula.setCurso(cursos.get(countCursos));
+            MatriculaRequest matriculaRequest = new MatriculaRequest(
+                    new AlunoRequestId(countAlunos),
+                    new CursoRequestId(countCursos)
+            );
 
-            countAlunos++;
-            countCursos++;
+            matriculaService.incluir(matriculaRequest);
 
-            matriculaService.incluir(matricula);
+            countAlunos--;
+            countCursos--;
+
             line = reader.readLine();
 
         }

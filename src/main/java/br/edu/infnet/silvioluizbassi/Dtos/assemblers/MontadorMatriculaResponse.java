@@ -15,12 +15,12 @@ public class MontadorMatriculaResponse {
                 matricula.getDataMatricula(),
                 matricula.isAtiva(),
                 MontadorAlunoResponse.toAlunoMatriculaResponse(matricula.getAluno()),
-                MontadorCursoResponse.toCursoMatriculaResponse(matricula.getCurso()),
-                MontadorInstrutorResponse.toInstrutoresMatriculaResponse(matricula.getCurso().getInstrutores())
+                MontadorCursoResponse.toCursoMatriculaResponse(matricula.getCurso())
         );
     }
 
     public static List<MatriculaResponse> toMatriculasResponse(List<Matricula> matriculas) {
         return matriculas.stream().map(MontadorMatriculaResponse::toMatriculaResponse).toList();
     }
+
 }

@@ -3,6 +3,7 @@ package br.edu.infnet.silvioluizbassi.model.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -17,8 +18,10 @@ public class Matricula {
     private Integer id;
 
     private long numeroDaMatricula;
+
+    @CreationTimestamp
     private LocalDateTime dataMatricula;
-    private boolean ativa;
+    private boolean ativa = true;
 
     @ManyToOne(optional = false)
     private Curso curso;

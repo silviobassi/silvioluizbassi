@@ -50,4 +50,8 @@ public class CursoService {
     public long countBootcamps() {
         return bootcampRepository.count();
     }
+
+    public Curso obterCursoPorId(Integer id) {
+        return cursoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Curso não encontrado"));
+    }
 }
