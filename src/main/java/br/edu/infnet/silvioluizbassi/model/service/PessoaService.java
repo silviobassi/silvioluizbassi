@@ -1,5 +1,6 @@
 package br.edu.infnet.silvioluizbassi.model.service;
 
+import br.edu.infnet.silvioluizbassi.exceptions.AlunoNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
 import br.edu.infnet.silvioluizbassi.model.domain.Instrutor;
 import br.edu.infnet.silvioluizbassi.model.domain.Pessoa;
@@ -53,6 +54,6 @@ public class PessoaService {
     }
 
     public Aluno obterAlunoPorId(Integer id) {
-        return alunoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Aluno não encontrado"));
+        return alunoRepository.findById(id).orElseThrow(AlunoNotFoundException::new);
     }
 }

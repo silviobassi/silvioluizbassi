@@ -31,6 +31,8 @@ public class MatriculaService {
         Curso curso = cursoService.obterCursoPorId(matriculaRequest.curso().id());
 
         Matricula matricula = new Matricula();
+
+        // Resolver a criação automática do número da matrícula
         matricula.setNumeroDaMatricula(28437248247L);
         matricula.setAluno(aluno);
         matricula.setCurso(curso);

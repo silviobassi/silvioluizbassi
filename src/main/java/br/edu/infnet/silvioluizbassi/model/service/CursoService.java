@@ -1,5 +1,6 @@
 package br.edu.infnet.silvioluizbassi.model.service;
 
+import br.edu.infnet.silvioluizbassi.exceptions.CursoNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Bootcamp;
 import br.edu.infnet.silvioluizbassi.model.domain.Curso;
 import br.edu.infnet.silvioluizbassi.model.domain.Especializacao;
@@ -52,6 +53,6 @@ public class CursoService {
     }
 
     public Curso obterCursoPorId(Integer id) {
-        return cursoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Curso não encontrado"));
+        return cursoRepository.findById(id).orElseThrow(CursoNotFoundException::new);
     }
 }

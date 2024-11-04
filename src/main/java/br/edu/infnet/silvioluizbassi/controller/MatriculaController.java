@@ -1,6 +1,5 @@
 package br.edu.infnet.silvioluizbassi.controller;
 
-import br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaResponse;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.MatriculaResponse;
 import br.edu.infnet.silvioluizbassi.model.service.MatriculaService;
