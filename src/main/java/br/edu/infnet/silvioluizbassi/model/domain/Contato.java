@@ -7,10 +7,10 @@ import lombok.Setter;
 @Setter
 public class Contato {
     private String email;
-    private String whatsapp;
+    private String whatsApp;
 
     @Override
     public String toString() {
-        return String.format("Contato{email='%s', whatsapp='%s'}", email, whatsapp);
+        return String.format("Contato{email='%s', whatsapp='%s'}", email, whatsApp);
     }
 }

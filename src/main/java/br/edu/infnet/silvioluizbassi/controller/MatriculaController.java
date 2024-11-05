@@ -6,9 +6,7 @@ import br.edu.infnet.silvioluizbassi.model.service.MatriculaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaResponse.toMatriculaResponse;
+import java.util.List;
 
 @RestController
 public class MatriculaController {
@@ -20,14 +18,13 @@ public class MatriculaController {
     }
 
     @GetMapping(value = "/lista/matriculas")
-    public Collection<MatriculaResponse> listarMatriculas() {
+    public List<MatriculaResponse> listarMatriculas() {
         return matriculaService.obterMatriculas();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/criar_matricula")
     public MatriculaResponse criarMatricula(@RequestBody MatriculaRequest matriculaRequest) {
-        matriculaService.incluir(matriculaRequest);
-        return toMatriculaResponse(matriculaService.incluir(matriculaRequest));
+        return matriculaService.incluir(matriculaRequest);
     }
 }

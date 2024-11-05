@@ -1,5 +1,7 @@
 package br.edu.infnet.silvioluizbassi;
 
+import br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto;
+import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.*;
 import br.edu.infnet.silvioluizbassi.model.service.CursoService;
 import br.edu.infnet.silvioluizbassi.model.service.PessoaService;
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.List;
+
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto.toInstrutor;
 
 @Component
 @Order(3)
@@ -31,7 +35,7 @@ public class LoaderCursos implements ApplicationRunner {
 
         String line = reader.readLine();
 
-        List<Instrutor> instrutores = pessoaService.obterInstrutores();
+        List<InstrutorResponse> instrutores = pessoaService.obterInstrutores();
         int countInstrutores = 0;
 
         while (line != null) {
@@ -47,10 +51,11 @@ public class LoaderCursos implements ApplicationRunner {
                     bootcamp.setPreRequisitos(campos[5]);
                     bootcamp.setEstagioObrigatorio(Boolean.parseBoolean(campos[6]));
                     bootcamp.setAtivo(Boolean.parseBoolean(campos[7]));
-                    bootcamp.setTipoDeBootcamp(campos[8]);
-                    bootcamp.setNivel(NivelBootcamp.valueOf(campos[9]));
+                    bootcamp.setNivelBootcamp(NivelBootcamp.valueOf(campos[9]));
 
-                    bootcamp.getInstrutores().add(instrutores.get(countInstrutores));
+                    if (!instrutores.get(countInstrutores).id().equals(3))
+                        bootcamp.getInstrutores().add(toInstrutor(instrutores.get(countInstrutores)));
+
                     cursoService.incluir(bootcamp);
                     countInstrutores++;
                 }
@@ -63,10 +68,12 @@ public class LoaderCursos implements ApplicationRunner {
                     especializacao.setPreRequisitos(campos[5]);
                     especializacao.setEstagioObrigatorio(Boolean.parseBoolean(campos[6]));
                     especializacao.setAtivo(Boolean.parseBoolean(campos[7]));
-                    especializacao.setTipoDeEspecializacao(campos[8]);
+                    especializacao.setTipoDeEspecializacao(TipoEspecializacao.valueOf(campos[8]));
                     especializacao.setEstagioObrigatorio(Boolean.parseBoolean(campos[9]));
 
-                    especializacao.getInstrutores().add(instrutores.get(countInstrutores));
+                    if (!instrutores.get(countInstrutores).id().equals(3))
+                        especializacao.getInstrutores().add(toInstrutor(instrutores.get(countInstrutores)));
+
                     cursoService.incluir(especializacao);
                     countInstrutores++;
 

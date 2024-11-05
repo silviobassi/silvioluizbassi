@@ -1,7 +1,13 @@
 package br.edu.infnet.silvioluizbassi;
 
-import br.edu.infnet.silvioluizbassi.model.domain.*;
-import br.edu.infnet.silvioluizbassi.model.service.*;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
+import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
+import br.edu.infnet.silvioluizbassi.model.domain.Contato;
+import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
+import br.edu.infnet.silvioluizbassi.model.domain.Genero;
+import br.edu.infnet.silvioluizbassi.model.service.EnderecoService;
+import br.edu.infnet.silvioluizbassi.model.service.PessoaService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -41,41 +47,40 @@ public class LoaderPessoas implements ApplicationRunner {
 
             switch (campos[0].toUpperCase()) {
                 case "I" -> {
-
-                    Instrutor instrutor = new Instrutor();
-                    instrutor.setNome(campos[1]);
-                    instrutor.setDataNascimento(LocalDateTime.parse(campos[2]));
-                    instrutor.setGenero(Genero.valueOf(campos[3]));
-                    instrutor.setFormacao(campos[4]);
-                    instrutor.setEspecialidade(campos[5]);
-                    instrutor.setContato(contato);
-
-                    instrutor.setEndereco(enderecos.get(countEnderecos));
-
-                    pessoaService.incluir(instrutor);
+                    InstrutorRequest instrutorRequest = new InstrutorRequest(
+                            campos[1],
+                            LocalDateTime.parse(campos[2]),
+                            Genero.valueOf(campos[3]),
+                            contato.getEmail(),
+                            contato.getWhatsApp(),
+                            enderecos.get(countEnderecos).getCep(),
+                            campos[4],
+                            campos[5]
+                    );
+                    pessoaService.incluirInstrutor(instrutorRequest);
 
                     countEnderecos++;
                 }
                 case "A" -> {
 
-                    Aluno aluno = new Aluno();
-                    aluno.setNome(campos[1]);
-                    aluno.setDataNascimento(LocalDateTime.parse(campos[2]));
-                    aluno.setGenero(Genero.valueOf(campos[3]));
-                    aluno.setBolsista(Boolean.parseBoolean(campos[4]));
-                    aluno.setEnem(Boolean.parseBoolean(campos[5]));
-
-                    aluno.setEndereco(enderecos.get(countEnderecos));
-                    aluno.setContato(contato);
-
-                    pessoaService.incluir(aluno);
+                    AlunoRequest alunoRequest = new AlunoRequest(
+                            campos[1],
+                            LocalDateTime.parse(campos[2]),
+                            Genero.valueOf(campos[3]),
+                            contato.getEmail(),
+                            contato.getWhatsApp(),
+                            enderecos.get(countEnderecos).getCep(),
+                            Boolean.parseBoolean(campos[4]),
+                            Boolean.parseBoolean(campos[5])
+                    );
+                    pessoaService.incluirAluno(alunoRequest);
 
                     countEnderecos++;
                 }
                 case "CT" -> {
                     contato = new Contato();
                     contato.setEmail(campos[1]);
-                    contato.setWhatsapp(campos[2]);
+                    contato.setWhatsApp(campos[2]);
                 }
                 default -> throw new Exception("❌ Não há pessoas a serem carregados!");
 

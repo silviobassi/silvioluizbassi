@@ -18,7 +18,8 @@ public class CursoService {
     private final EspecializacaoRepository especializacaoRepository;
     private final BootcampRepository bootcampRepository;
 
-    public CursoService(CursoRepository cursoRepository, EspecializacaoRepository especializacaoRepository, BootcampRepository bootcampRepository) {
+    public CursoService(CursoRepository cursoRepository, EspecializacaoRepository especializacaoRepository,
+                        BootcampRepository bootcampRepository) {
         this.cursoRepository = cursoRepository;
         this.especializacaoRepository = especializacaoRepository;
         this.bootcampRepository = bootcampRepository;

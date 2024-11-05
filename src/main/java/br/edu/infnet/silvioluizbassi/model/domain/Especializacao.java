@@ -10,8 +10,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "tespecializacao")
 public class Especializacao extends Curso {
-    private String tipoDeEspecializacao;
-    private boolean estagioObrigatorio;
+    private TipoEspecializacao tipoDeEspecializacao;
 
     @Override
     public String toString() {

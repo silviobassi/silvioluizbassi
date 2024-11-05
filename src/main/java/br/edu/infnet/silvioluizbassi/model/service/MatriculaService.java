@@ -8,9 +8,10 @@ import br.edu.infnet.silvioluizbassi.model.domain.Matricula;
 import br.edu.infnet.silvioluizbassi.model.repository.MatriculaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.List;
 
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaResponse.*;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaDto.toMatriculaResponse;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaDto.toMatriculasResponse;
 
 @Service
 public class MatriculaService {
@@ -25,22 +26,17 @@ public class MatriculaService {
         this.cursoService = cursoService;
     }
 
-    public Matricula incluir(MatriculaRequest matriculaRequest) {
-
-        Aluno aluno = pessoaService.obterAlunoPorId(matriculaRequest.aluno().id());
+    public MatriculaResponse incluir(MatriculaRequest matriculaRequest) {
         Curso curso = cursoService.obterCursoPorId(matriculaRequest.curso().id());
-
+        Aluno aluno = pessoaService.obterAlunoPorId(matriculaRequest.aluno().id());
         Matricula matricula = new Matricula();
-
-        // Resolver a criação automática do número da matrícula
-        matricula.setNumeroDaMatricula(28437248247L);
-        matricula.setAluno(aluno);
+        matricula.setNumeroDaMatricula(matriculaRequest.numeroMatricula());
         matricula.setCurso(curso);
-
-        return matriculaRepository.save(matricula);
+        matricula.setAluno(aluno);
+        return toMatriculaResponse(matriculaRepository.save(matricula));
     }
 
-    public Collection<MatriculaResponse> obterMatriculas() {
+    public List<MatriculaResponse> obterMatriculas() {
         return toMatriculasResponse(matriculaRepository.findAll());
     }
 

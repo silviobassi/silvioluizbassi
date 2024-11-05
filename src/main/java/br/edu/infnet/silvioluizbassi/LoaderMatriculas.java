@@ -3,7 +3,6 @@ package br.edu.infnet.silvioluizbassi;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequestId;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.CursoRequestId;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
-import br.edu.infnet.silvioluizbassi.model.domain.Matricula;
 import br.edu.infnet.silvioluizbassi.model.service.CursoService;
 import br.edu.infnet.silvioluizbassi.model.service.MatriculaService;
 import br.edu.infnet.silvioluizbassi.model.service.PessoaService;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.time.LocalDateTime;
 
 @Component
 @Order(4)
@@ -45,22 +43,13 @@ public class LoaderMatriculas implements ApplicationRunner {
 
             if (!campos[0].equalsIgnoreCase("M")) throw new Exception("❌ Não há matrículas a serem carregadas!");
 
-            Matricula matricula = new Matricula();
-            matricula.setNumeroDaMatricula(Long.parseLong(campos[1]));
-            matricula.setDataMatricula(LocalDateTime.parse(campos[2]));
-            matricula.setAtiva(Boolean.parseBoolean(campos[3]));
-
-
             MatriculaRequest matriculaRequest = new MatriculaRequest(
-                    new AlunoRequestId(countAlunos),
-                    new CursoRequestId(countCursos)
-            );
-
-            matriculaService.incluir(matriculaRequest);
+                    Long.parseLong(campos[1]), new AlunoRequestId(countAlunos), new CursoRequestId(countCursos));
 
             countAlunos--;
             countCursos--;
 
+            matriculaService.incluir(matriculaRequest);
             line = reader.readLine();
 
         }

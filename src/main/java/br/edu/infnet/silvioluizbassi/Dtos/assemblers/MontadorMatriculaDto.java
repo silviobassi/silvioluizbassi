@@ -5,7 +5,7 @@ import br.edu.infnet.silvioluizbassi.model.domain.Matricula;
 
 import java.util.List;
 
-public class MontadorMatriculaResponse {
+public class MontadorMatriculaDto {
 
     public static MatriculaResponse toMatriculaResponse(Matricula matricula) {
 
@@ -14,13 +14,13 @@ public class MontadorMatriculaResponse {
                 matricula.getNumeroDaMatricula(),
                 matricula.getDataMatricula(),
                 matricula.isAtiva(),
-                MontadorAlunoResponse.toAlunoMatriculaResponse(matricula.getAluno()),
-                MontadorCursoResponse.toCursoMatriculaResponse(matricula.getCurso())
+                MontadorAlunoDto.toAlunoMatriculaResponse(matricula.getAluno()),
+                MontadorCursoDto.toCursoMatriculaResponse(matricula.getCurso())
         );
     }
 
     public static List<MatriculaResponse> toMatriculasResponse(List<Matricula> matriculas) {
-        return matriculas.stream().map(MontadorMatriculaResponse::toMatriculaResponse).toList();
+        return matriculas.stream().map(MontadorMatriculaDto::toMatriculaResponse).toList();
     }
 
 }

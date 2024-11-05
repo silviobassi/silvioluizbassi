@@ -23,7 +23,7 @@ public abstract class Curso {
     private int cargaHoraria;
     private String preRequisitos;
     private boolean estagioObrigatorio;
-    private boolean ativo;
+    private boolean ativo = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tcurso_instrutor",

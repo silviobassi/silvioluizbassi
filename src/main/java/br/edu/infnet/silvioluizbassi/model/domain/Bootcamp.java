@@ -12,14 +12,12 @@ import lombok.Setter;
 @Entity
 @Table(name = "tbootcamp")
 public class Bootcamp extends Curso {
-    private String tipoDeBootcamp;
-
     @Enumerated(EnumType.STRING)
-    private NivelBootcamp nivel;
+    private NivelBootcamp nivelBootcamp;
 
     @Override
     public String toString() {
-        return String.format("Bootcamp{titulo='%s', descricao='%s', valor=%.2f, cargaHoraria=%d, tipoDeBootcamp='%s', nivel='%s'}",
-                getTitulo(), getDescricao(), getValor(), getCargaHoraria(), tipoDeBootcamp, nivel);
+        return String.format("Bootcamp{titulo='%s', descricao='%s', valor=%.2f, cargaHoraria=%d, nivel='%s'}",
+                getTitulo(), getDescricao(), getValor(), getCargaHoraria(), nivelBootcamp);
     }
 }
