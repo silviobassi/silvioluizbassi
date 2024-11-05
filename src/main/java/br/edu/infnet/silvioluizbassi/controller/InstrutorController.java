@@ -2,11 +2,6 @@ package br.edu.infnet.silvioluizbassi.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
-import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
-import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
-import br.edu.infnet.silvioluizbassi.model.domain.Instrutor;
-import br.edu.infnet.silvioluizbassi.model.service.EnderecoService;
-import br.edu.infnet.silvioluizbassi.model.service.LocalizacaoService;
 import br.edu.infnet.silvioluizbassi.model.service.PessoaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +12,9 @@ import java.util.List;
 public class InstrutorController {
 
     private final PessoaService pessoaService;
-    private final LocalizacaoService localizacaoService;
-    private final EnderecoService enderecoService;
 
-    public InstrutorController(PessoaService pessoaService, LocalizacaoService localizacaoService, EnderecoService enderecoService) {
+    public InstrutorController(PessoaService pessoaService) {
         this.pessoaService = pessoaService;
-        this.localizacaoService = localizacaoService;
-        this.enderecoService = enderecoService;
     }
 
     @GetMapping(value = "/lista/instrutores")
@@ -39,7 +30,7 @@ public class InstrutorController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/{id}/obter_instrutor")
-    public Instrutor obterInstrutorPorId(@PathVariable Integer id) {
+    public InstrutorResponse obterInstrutorPorId(@PathVariable Integer id) {
         return pessoaService.obterInstrutorPorId(id);
     }
 

@@ -29,7 +29,7 @@ public class CustomProblemDetail extends ProblemDetail {
         return className
                 .replaceAll("([a-z])([A-Z])", "$1 $2")
                 .replaceAll("Exception", "")
-                .toLowerCase()
                 .trim();
     }
+
 }

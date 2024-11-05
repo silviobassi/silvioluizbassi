@@ -1,6 +1,5 @@
 package br.edu.infnet.silvioluizbassi.model.service;
 
-import br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorAlunoDto;
 import br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
@@ -16,7 +15,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorAlunoDto.toAlunoResponse;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorAlunoDto.toAlunosResponse;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto.*;
 import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto.toInstrutorResponse;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto.toInstrutoresResponse;
 
 @Service
 public class PessoaService {
@@ -72,11 +75,11 @@ public class PessoaService {
         aluno.setEnem(alunoRequest.isEnem());
 
         aluno.setEndereco(endereco);
-        return MontadorAlunoDto.toAlunoResponse(pessoaRepository.save(aluno));
+        return toAlunoResponse(pessoaRepository.save(aluno));
     }
 
-    public List<Aluno> obterAlunos() {
-        return alunoRepository.findAll();
+    public List<AlunoResponse> obterAlunos() {
+        return toAlunosResponse(alunoRepository.findAll());
     }
 
     public List<Pessoa> obterPessoas() {
@@ -84,7 +87,7 @@ public class PessoaService {
     }
 
     public List<InstrutorResponse> obterInstrutores() {
-        return MontadorInstrutorDto.toInstrutoresResponse(instrutorRepository.findAll());
+        return toInstrutoresResponse(instrutorRepository.findAll());
     }
 
     public long countAlunos() {
@@ -99,12 +102,12 @@ public class PessoaService {
         return pessoaRepository.count();
     }
 
-    public Aluno obterAlunoPorId(Integer id) {
-        return alunoRepository.findById(id).orElseThrow(AlunoNotFoundException::new);
+    public AlunoResponse obterAlunoPorId(Integer id) {
+        return toAlunoResponse(alunoRepository.findById(id).orElseThrow(AlunoNotFoundException::new));
     }
 
-    public Instrutor obterInstrutorPorId(Integer id) {
-        return instrutorRepository.findById(id).orElseThrow(InstrutorNotFoundException::new);
+    public InstrutorResponse obterInstrutorPorId(Integer id) {
+        return toInstrutorResponse(instrutorRepository.findById(id).orElseThrow(InstrutorNotFoundException::new));
     }
 
     public void excluirInstrutorPorId(Integer id) {

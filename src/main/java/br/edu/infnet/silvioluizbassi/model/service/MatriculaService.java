@@ -1,5 +1,6 @@
 package br.edu.infnet.silvioluizbassi.model.service;
 
+import br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorAlunoDto;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.MatriculaResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
@@ -28,7 +29,7 @@ public class MatriculaService {
 
     public MatriculaResponse incluir(MatriculaRequest matriculaRequest) {
         Curso curso = cursoService.obterCursoPorId(matriculaRequest.curso().id());
-        Aluno aluno = pessoaService.obterAlunoPorId(matriculaRequest.aluno().id());
+        Aluno aluno = MontadorAlunoDto.toAluno(pessoaService.obterAlunoPorId(matriculaRequest.aluno().id()));
         Matricula matricula = new Matricula();
         matricula.setNumeroDaMatricula(matriculaRequest.numeroMatricula());
         matricula.setCurso(curso);

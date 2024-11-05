@@ -19,7 +19,7 @@ public class AlunoController {
     }
 
     @GetMapping(value = "/lista/alunos")
-    public List<Aluno> listarAlunos() {
+    public List<AlunoResponse> listarAlunos() {
         return pessoaService.obterAlunos();
     }
 
@@ -31,7 +31,7 @@ public class AlunoController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/{id}/obter_aluno")
-    public Aluno obterAlunoPorId(@PathVariable Integer id) {
+    public AlunoResponse obterAlunoPorId(@PathVariable Integer id) {
         return pessoaService.obterAlunoPorId(id);
     }
 
