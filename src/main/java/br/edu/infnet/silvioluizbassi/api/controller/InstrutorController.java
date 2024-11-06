@@ -1,4 +1,4 @@
-package br.edu.infnet.silvioluizbassi.controller;
+package br.edu.infnet.silvioluizbassi.api.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
