@@ -18,18 +18,18 @@ import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaDto
 public class MatriculaService {
 
     private final MatriculaRepository matriculaRepository;
-    private final PessoaService pessoaService;
+    private final AlunoService alunoService;
     private final CursoService cursoService;
 
-    public MatriculaService(MatriculaRepository matriculaRepository, PessoaService pessoaService, CursoService cursoService) {
+    public MatriculaService(MatriculaRepository matriculaRepository, AlunoService alunoService, CursoService cursoService) {
         this.matriculaRepository = matriculaRepository;
-        this.pessoaService = pessoaService;
+        this.alunoService = alunoService;
         this.cursoService = cursoService;
     }
 
     public MatriculaResponse incluir(MatriculaRequest matriculaRequest) {
         Curso curso = cursoService.obterCursoPorId(matriculaRequest.curso().id());
-        Aluno aluno = MontadorAlunoDto.toAluno(pessoaService.obterAlunoPorId(matriculaRequest.aluno().id()));
+        Aluno aluno = MontadorAlunoDto.toAluno(alunoService.obterAlunoPorId(matriculaRequest.aluno().id()));
         Matricula matricula = new Matricula();
         matricula.setNumeroDaMatricula(matriculaRequest.numeroMatricula());
         matricula.setCurso(curso);

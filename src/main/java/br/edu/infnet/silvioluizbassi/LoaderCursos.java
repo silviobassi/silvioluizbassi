@@ -1,10 +1,9 @@
 package br.edu.infnet.silvioluizbassi;
 
-import br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.*;
 import br.edu.infnet.silvioluizbassi.model.service.CursoService;
-import br.edu.infnet.silvioluizbassi.model.service.PessoaService;
+import br.edu.infnet.silvioluizbassi.model.service.InstrutorService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -20,11 +19,11 @@ import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto
 @Order(3)
 public class LoaderCursos implements ApplicationRunner {
 
-    private final PessoaService pessoaService;
+    private final InstrutorService instrutorService;
     private final CursoService cursoService;
 
-    public LoaderCursos(PessoaService pessoaService, CursoService cursoService) {
-        this.pessoaService = pessoaService;
+    public LoaderCursos(InstrutorService instrutorService, CursoService cursoService) {
+        this.instrutorService = instrutorService;
         this.cursoService = cursoService;
     }
 
@@ -35,7 +34,7 @@ public class LoaderCursos implements ApplicationRunner {
 
         String line = reader.readLine();
 
-        List<InstrutorResponse> instrutores = pessoaService.obterInstrutores();
+        List<InstrutorResponse> instrutores = instrutorService.obterInstrutores();
         int countInstrutores = 0;
 
         while (line != null) {

@@ -2,12 +2,12 @@ package br.edu.infnet.silvioluizbassi;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
-import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
 import br.edu.infnet.silvioluizbassi.model.domain.Contato;
 import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
 import br.edu.infnet.silvioluizbassi.model.domain.Genero;
+import br.edu.infnet.silvioluizbassi.model.service.AlunoService;
 import br.edu.infnet.silvioluizbassi.model.service.EnderecoService;
-import br.edu.infnet.silvioluizbassi.model.service.PessoaService;
+import br.edu.infnet.silvioluizbassi.model.service.InstrutorService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -23,12 +23,13 @@ import java.util.List;
 public class LoaderPessoas implements ApplicationRunner {
 
     private final EnderecoService enderecoService;
+    private final AlunoService alunoService;
+    private final InstrutorService instrutorService;
 
-    private final PessoaService pessoaService;
-
-    public LoaderPessoas(EnderecoService enderecoService, PessoaService pessoaService) {
+    public LoaderPessoas(EnderecoService enderecoService, AlunoService alunoService, InstrutorService instrutorService) {
         this.enderecoService = enderecoService;
-        this.pessoaService = pessoaService;
+        this.alunoService = alunoService;
+        this.instrutorService = instrutorService;
     }
 
     @Override
@@ -57,7 +58,7 @@ public class LoaderPessoas implements ApplicationRunner {
                             campos[4],
                             campos[5]
                     );
-                    pessoaService.incluirInstrutor(instrutorRequest);
+                    instrutorService.incluir(instrutorRequest);
 
                     countEnderecos++;
                 }
@@ -73,7 +74,7 @@ public class LoaderPessoas implements ApplicationRunner {
                             Boolean.parseBoolean(campos[4]),
                             Boolean.parseBoolean(campos[5])
                     );
-                    pessoaService.incluirAluno(alunoRequest);
+                    alunoService.incluir(alunoRequest);
 
                     countEnderecos++;
                 }

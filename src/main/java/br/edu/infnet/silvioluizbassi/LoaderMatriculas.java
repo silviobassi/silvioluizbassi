@@ -3,9 +3,9 @@ package br.edu.infnet.silvioluizbassi;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequestId;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.CursoRequestId;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
+import br.edu.infnet.silvioluizbassi.model.service.AlunoService;
 import br.edu.infnet.silvioluizbassi.model.service.CursoService;
 import br.edu.infnet.silvioluizbassi.model.service.MatriculaService;
-import br.edu.infnet.silvioluizbassi.model.service.PessoaService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -18,12 +18,12 @@ import java.io.FileReader;
 @Order(4)
 public class LoaderMatriculas implements ApplicationRunner {
 
-    private final PessoaService pessoaService;
+    private final AlunoService alunoService;
     private final MatriculaService matriculaService;
     private final CursoService cursoService;
 
-    public LoaderMatriculas(PessoaService pessoaService, MatriculaService matriculaService, CursoService cursoService) {
-        this.pessoaService = pessoaService;
+    public LoaderMatriculas(AlunoService alunoService, MatriculaService matriculaService, CursoService cursoService) {
+        this.alunoService = alunoService;
         this.matriculaService = matriculaService;
         this.cursoService = cursoService;
     }
@@ -35,7 +35,7 @@ public class LoaderMatriculas implements ApplicationRunner {
 
         String line = reader.readLine();
 
-        int countAlunos = (int) pessoaService.countAlunos();
+        int countAlunos = (int) alunoService.countAlunos();
         int countCursos = (int) cursoService.countCursos();
 
         while (line != null) {
