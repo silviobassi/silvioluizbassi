@@ -3,12 +3,14 @@ package br.edu.infnet.silvioluizbassi.api.controller;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.model.service.InstrutorService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Tag(name = "Instrutor", description = "Endpoints para gestão de instrutores")
 public class InstrutorController {
 
     private final InstrutorService instrutorService;

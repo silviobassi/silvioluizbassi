@@ -3,12 +3,15 @@ package br.edu.infnet.silvioluizbassi.api.controller;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoResponse;
 import br.edu.infnet.silvioluizbassi.model.service.AlunoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
+@Tag(name = "Aluno", description = "Endpoints para gestão de alunos")
 public class AlunoController {
 
     private final AlunoService alunoService;
