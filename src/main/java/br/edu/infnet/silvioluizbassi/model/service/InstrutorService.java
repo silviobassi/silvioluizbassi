@@ -1,6 +1,7 @@
 package br.edu.infnet.silvioluizbassi.model.service;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateInstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.exceptions.InstrutorNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
@@ -40,6 +41,13 @@ public class InstrutorService {
         return toInstrutorResponse(pessoaRepository.save(instrutor));
     }
 
+    public InstrutorResponse atualizar(UpdateInstrutorRequest updateInstrutorRequest) {
+        Instrutor instrutor = getInstrutorPorId(updateInstrutorRequest.id());
+        Endereco endereco = localizacaoService.findByCep(updateInstrutorRequest.cep());
+        toInstrutor(updateInstrutorRequest, instrutor, endereco);
+        return toInstrutorResponse(pessoaRepository.save(instrutor));
+    }
+
     public List<InstrutorResponse> obterInstrutores() {
         return toInstrutoresResponse(instrutorRepository.findAll());
     }
@@ -49,12 +57,15 @@ public class InstrutorService {
     }
 
     public InstrutorResponse obterInstrutorPorId(Integer id) {
-        return toInstrutorResponse(instrutorRepository.findById(id).orElseThrow(InstrutorNotFoundException::new));
+        return toInstrutorResponse(getInstrutorPorId(id));
     }
 
     public void excluirInstrutorPorId(Integer id) {
-        obterInstrutorPorId(id);
+        getInstrutorPorId(id);
         instrutorRepository.deleteById(id);
     }
 
+    private Instrutor getInstrutorPorId(Integer id) {
+        return instrutorRepository.findById(id).orElseThrow(InstrutorNotFoundException::new);
+    }
 }

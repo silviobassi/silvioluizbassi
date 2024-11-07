@@ -1,16 +1,16 @@
-package br.edu.infnet.silvioluizbassi.Dtos.responses;
+package br.edu.infnet.silvioluizbassi.Dtos.requests;
 
 import br.edu.infnet.silvioluizbassi.model.domain.TipoEspecializacao;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
 
-public record EspecializacaoResponse(
+public record UpdateEspecializacaoRequest(
         @Schema(example = "1")
         Integer id,
         @Schema(example = "Especialização de Java")
         String titulo,
-        @Schema(example = "Especialização de Java para iniciantes")
+        @Schema(example = "Especialização de Java com Spring Boot")
         String descricao,
         @Schema(example = "1000.00")
         float valor,
@@ -20,14 +20,8 @@ public record EspecializacaoResponse(
         String preRequisitos,
         @Schema(example = "true")
         boolean estagioObrigatorio,
-        @Schema(example = "true")
-        boolean ativo,
-        @Schema(example = "POS_GRADUACAO")
+        @Schema(example = "EXTENSAO")
         TipoEspecializacao tipoDeEspecializacao,
-        List<InstrutorCursoResponse> instrutores
+        List<InstrutorRequestId> instrutores
 ) {
 }
-
-
-
-

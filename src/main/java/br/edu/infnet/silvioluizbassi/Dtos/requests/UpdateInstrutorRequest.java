@@ -5,7 +5,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;
 
-public record InstrutorRequest(
+public record UpdateInstrutorRequest(
+        @Schema(example = "1")
+        Integer id,
         @Schema(example = "Silvio Luiz Bassi")
         String nome,
         @Schema(example = "1980-01-01T00:00:00")

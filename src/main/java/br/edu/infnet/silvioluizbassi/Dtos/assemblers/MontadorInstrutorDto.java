@@ -1,10 +1,12 @@
 package br.edu.infnet.silvioluizbassi.Dtos.assemblers;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateInstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorCursoResponse;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorMatriculaResponse;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Contato;
+import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
 import br.edu.infnet.silvioluizbassi.model.domain.Instrutor;
 
 import java.util.List;
@@ -89,5 +91,21 @@ public class MontadorInstrutorDto {
         instrutor.setEspecialidade(instrutorRequest.especialidade());
 
         return instrutor;
+    }
+
+    public static void toInstrutor(UpdateInstrutorRequest updateInstrutorRequest, Instrutor instrutor, Endereco endereco) {
+        Contato contato = new Contato();
+        contato.setEmail(updateInstrutorRequest.email());
+        contato.setWhatsApp(updateInstrutorRequest.whatsApp());
+
+        instrutor.setNome(updateInstrutorRequest.nome());
+        instrutor.setDataNascimento(updateInstrutorRequest.dataNascimento());
+        instrutor.setGenero(updateInstrutorRequest.genero());
+        instrutor.setContato(contato);
+        instrutor.setFormacao(updateInstrutorRequest.formacao());
+        instrutor.setEspecialidade(updateInstrutorRequest.especialidade());
+
+        instrutor.setEndereco(endereco);
+
     }
 }

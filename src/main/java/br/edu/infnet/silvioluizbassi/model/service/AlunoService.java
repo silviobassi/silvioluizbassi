@@ -1,10 +1,10 @@
 package br.edu.infnet.silvioluizbassi.model.service;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateAlunoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoResponse;
 import br.edu.infnet.silvioluizbassi.exceptions.AlunoNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
-import br.edu.infnet.silvioluizbassi.model.domain.Contato;
 import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
 import br.edu.infnet.silvioluizbassi.model.repository.AlunoRepository;
 import br.edu.infnet.silvioluizbassi.model.repository.PessoaRepository;
@@ -40,6 +40,13 @@ public class AlunoService {
         return toAlunoResponse(pessoaRepository.save(aluno));
     }
 
+    public AlunoResponse atualizar(UpdateAlunoRequest updateAlunoRequest) {
+        Aluno aluno = getAlunoPorId(updateAlunoRequest.id());
+        Endereco endereco = localizacaoService.findByCep(updateAlunoRequest.cep());
+        toAluno(updateAlunoRequest, aluno, endereco);
+        return toAlunoResponse(pessoaRepository.save(aluno));
+    }
+
     public List<AlunoResponse> obterAlunos() {
         return toAlunosResponse(alunoRepository.findAll());
     }
@@ -53,11 +60,15 @@ public class AlunoService {
     }
 
     public AlunoResponse obterAlunoPorId(Integer id) {
-        return toAlunoResponse(alunoRepository.findById(id).orElseThrow(AlunoNotFoundException::new));
+        return toAlunoResponse(getAlunoPorId(id));
     }
 
     public void excluirAlunoPorId(Integer id) {
-        obterAlunoPorId(id);
+        getAlunoPorId(id);
         alunoRepository.deleteById(id);
+    }
+
+    Aluno getAlunoPorId(Integer id) {
+        return alunoRepository.findById(id).orElseThrow(AlunoNotFoundException::new);
     }
 }

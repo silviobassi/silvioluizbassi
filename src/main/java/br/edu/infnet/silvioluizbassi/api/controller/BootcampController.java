@@ -1,6 +1,7 @@
 package br.edu.infnet.silvioluizbassi.api.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.BootcampRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateBootcampRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.BootcampResponse;
 import br.edu.infnet.silvioluizbassi.api.openapi.BootcampControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.BootcampService;
@@ -29,6 +30,12 @@ public class BootcampController implements BootcampControllerDocApi {
     @PostMapping("/criar_bootcamp")
     public BootcampResponse incluirBootcamp(@RequestBody BootcampRequest bootcampRequest) {
         return bootcampService.incluir(bootcampRequest);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/atualizar_bootcamp")
+    public BootcampResponse atualizarBootcamp(@RequestBody UpdateBootcampRequest updateBootcampRequest) {
+        return bootcampService.atualizar(updateBootcampRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public record MatriculaResponse(
         @Schema(example = "1")
-        long id,
+        Integer id,
         @Schema(example = "2584965")
         long numeroDaMatricula,
         @Schema(example = "2021-08-01T00:00:00")

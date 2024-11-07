@@ -1,6 +1,7 @@
 package br.edu.infnet.silvioluizbassi.api.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateAlunoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoResponse;
 import br.edu.infnet.silvioluizbassi.api.openapi.AlunoControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.AlunoService;
@@ -28,6 +29,12 @@ public class AlunoController implements AlunoControllerDocApi {
     @PostMapping(value = "/criar_aluno")
     public AlunoResponse criarAluno(@RequestBody AlunoRequest alunoRequest) {
         return alunoService.incluir(alunoRequest);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping(value = "/atualizar_aluno")
+    public AlunoResponse atualizarAluno(@RequestBody UpdateAlunoRequest updateAlunoRequest) {
+        return alunoService.atualizar(updateAlunoRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)

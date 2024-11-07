@@ -1,6 +1,7 @@
 package br.edu.infnet.silvioluizbassi.model.service;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateMatriculaRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.MatriculaResponse;
 import br.edu.infnet.silvioluizbassi.exceptions.MatriculaNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
@@ -11,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorAlunoDto.toAluno;
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaDto.*;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaDto.toMatriculaResponse;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaDto.toMatriculasResponse;
 
 @Service
 public class MatriculaService {
@@ -29,10 +30,24 @@ public class MatriculaService {
 
     public MatriculaResponse incluir(MatriculaRequest matriculaRequest) {
         Curso curso = cursoService.obterCursoPorId(matriculaRequest.curso().id());
-        Aluno aluno = toAluno(alunoService.obterAlunoPorId(matriculaRequest.aluno().id()));
-        Matricula matricula = toMatricula(matriculaRequest);
+        Aluno aluno = alunoService.getAlunoPorId(matriculaRequest.aluno().id());
+        Matricula matricula = new Matricula();
+        matricula.setNumeroDaMatricula(matriculaRequest.numeroMatricula());
         matricula.setCurso(curso);
         matricula.setAluno(aluno);
+        return toMatriculaResponse(matriculaRepository.save(matricula));
+    }
+
+    public MatriculaResponse atualizar(UpdateMatriculaRequest updateMatriculaRequest) {
+        Curso curso = cursoService.obterCursoPorId(updateMatriculaRequest.curso().id());
+        Aluno aluno = alunoService.getAlunoPorId(updateMatriculaRequest.aluno().id());
+
+        Matricula matricula = getMatriculaPorId(updateMatriculaRequest.id());
+
+        matricula.setNumeroDaMatricula(updateMatriculaRequest.numeroDaMatricula());
+        matricula.setCurso(curso);
+        matricula.setAluno(aluno);
+
         return toMatriculaResponse(matriculaRepository.save(matricula));
     }
 
@@ -45,11 +60,15 @@ public class MatriculaService {
     }
 
     public MatriculaResponse obterMatriculaPorId(Integer id) {
-        return toMatriculaResponse(matriculaRepository.findById(id).orElseThrow(MatriculaNotFoundException::new));
+        return toMatriculaResponse(getMatriculaPorId(id));
     }
 
     public void excluir(Integer id) {
-        obterMatriculaPorId(id);
+        getMatriculaPorId(id);
         matriculaRepository.deleteById(id);
+    }
+
+    private Matricula getMatriculaPorId(Integer id) {
+        return matriculaRepository.findById(id).orElseThrow(MatriculaNotFoundException::new);
     }
 }

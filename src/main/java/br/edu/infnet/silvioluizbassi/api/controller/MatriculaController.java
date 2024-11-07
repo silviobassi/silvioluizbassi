@@ -1,6 +1,7 @@
 package br.edu.infnet.silvioluizbassi.api.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateMatriculaRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.MatriculaResponse;
 import br.edu.infnet.silvioluizbassi.api.openapi.MatriculaControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.MatriculaService;
@@ -28,6 +29,12 @@ public class MatriculaController implements MatriculaControllerDocApi {
     @PostMapping(value = "/criar_matricula")
     public MatriculaResponse criarMatricula(@RequestBody MatriculaRequest matriculaRequest) {
         return matriculaService.incluir(matriculaRequest);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/atualizar_matricula")
+    public MatriculaResponse atualizarMatricula(@RequestBody UpdateMatriculaRequest updateMatriculaRequest) {
+        return matriculaService.atualizar(updateMatriculaRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)

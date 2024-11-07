@@ -1,6 +1,7 @@
 package br.edu.infnet.silvioluizbassi.Dtos.assemblers;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.BootcampRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateBootcampRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.BootcampResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Bootcamp;
 
@@ -14,6 +15,7 @@ public class MontadorBootcampDto {
         return new BootcampResponse(
                 bootcamp.getId(),
                 bootcamp.getTitulo(),
+                bootcamp.getDescricao(),
                 bootcamp.getValor(),
                 bootcamp.getCargaHoraria(),
                 bootcamp.getPreRequisitos(),
@@ -35,6 +37,29 @@ public class MontadorBootcampDto {
         bootcamp.setNivelBootcamp(bootcampRequest.nivel());
 
         return bootcamp;
+    }
+
+    public static Bootcamp toBootcamp(BootcampResponse bootcampResponse) {
+        Bootcamp bootcamp = new Bootcamp();
+        bootcamp.setTitulo(bootcampResponse.titulo());
+        bootcamp.setDescricao(bootcampResponse.descricao());
+        bootcamp.setValor(bootcampResponse.valor());
+        bootcamp.setCargaHoraria(bootcampResponse.cargaHoraria());
+        bootcamp.setPreRequisitos(bootcampResponse.preRequisitos());
+        bootcamp.setEstagioObrigatorio(bootcampResponse.estagioObrigatorio());
+        bootcamp.setNivelBootcamp(bootcampResponse.nivel());
+
+        return bootcamp;
+    }
+
+    public static void toBootcamp(UpdateBootcampRequest updateBootcampRequest, Bootcamp bootcamp) {
+        bootcamp.setTitulo(updateBootcampRequest.titulo());
+        bootcamp.setDescricao(updateBootcampRequest.descricao());
+        bootcamp.setValor(updateBootcampRequest.valor());
+        bootcamp.setCargaHoraria(updateBootcampRequest.cargaHoraria());
+        bootcamp.setPreRequisitos(updateBootcampRequest.preRequisitos());
+        bootcamp.setEstagioObrigatorio(updateBootcampRequest.estagioObrigatorio());
+        bootcamp.setNivelBootcamp(updateBootcampRequest.nivel());
     }
 
     public static List<BootcampResponse> toBootcampsResponse(List<Bootcamp> bootcamps) {

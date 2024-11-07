@@ -1,7 +1,7 @@
 package br.edu.infnet.silvioluizbassi.model.service;
 
-import br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.EspecializacaoRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateEspecializacaoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.EspecializacaoResponse;
 import br.edu.infnet.silvioluizbassi.exceptions.CursoNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Especializacao;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorEspecializacaoDto.*;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto.toInstrutor;
 
 @Service
 public class EspecializacaoService {
@@ -28,10 +29,25 @@ public class EspecializacaoService {
         Especializacao especializacao = toEspecializacao(especializacaoRequest);
 
         especializacaoRequest.instrutores().forEach(instrutorRequest -> {
-            Instrutor instrutor = MontadorInstrutorDto
-                    .toInstrutor(instrutorService.obterInstrutorPorId(instrutorRequest.id()));
-            especializacao.getInstrutores().add(instrutor);
+            Instrutor instrutorAtual = toInstrutor(instrutorService.obterInstrutorPorId(instrutorRequest.id()));
+            especializacao.getInstrutores().add(instrutorAtual);
         });
+
+        return toEspecializacaoResponse(especializacaoRepository.save(especializacao));
+    }
+
+    public EspecializacaoResponse atualizar(UpdateEspecializacaoRequest updateEspecializacaoRequest) {
+
+        Especializacao especializacao = getEspecializacaoPorId(updateEspecializacaoRequest.id());
+
+        if (!updateEspecializacaoRequest.instrutores().isEmpty()) especializacao.getInstrutores().clear();
+
+        updateEspecializacaoRequest.instrutores().forEach(instrutorRequest -> {
+            Instrutor instrutorAtual = toInstrutor(instrutorService.obterInstrutorPorId(instrutorRequest.id()));
+            especializacao.getInstrutores().add(instrutorAtual);
+        });
+
+        toEspecializacao(updateEspecializacaoRequest, especializacao);
 
         return toEspecializacaoResponse(especializacaoRepository.save(especializacao));
     }
@@ -45,12 +61,16 @@ public class EspecializacaoService {
     }
 
     public EspecializacaoResponse obterEspecializacaoPorId(Integer id) {
-        return toEspecializacaoResponse(
-                especializacaoRepository.findById(id).orElseThrow(CursoNotFoundException::new));
+        return toEspecializacaoResponse(getEspecializacaoPorId(id));
     }
 
+
     public void excluir(Integer id) {
-        obterEspecializacaoPorId(id);
+        getEspecializacaoPorId(id);
         especializacaoRepository.deleteById(id);
+    }
+
+    private Especializacao getEspecializacaoPorId(Integer id) {
+        return especializacaoRepository.findById(id).orElseThrow(CursoNotFoundException::new);
     }
 }

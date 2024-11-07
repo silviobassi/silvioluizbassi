@@ -23,7 +23,8 @@ public abstract class Pessoa {
     @Embedded
     private Contato contato;
 
-    @OneToOne(optional = false, orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToOne(optional = false, orphanRemoval = true, fetch = FetchType.EAGER,
+            cascade = {CascadeType.REMOVE, CascadeType.MERGE})
     private Endereco endereco;
 
 }

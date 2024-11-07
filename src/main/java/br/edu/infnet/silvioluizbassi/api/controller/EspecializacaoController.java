@@ -1,6 +1,7 @@
 package br.edu.infnet.silvioluizbassi.api.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.EspecializacaoRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateEspecializacaoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.EspecializacaoResponse;
 import br.edu.infnet.silvioluizbassi.api.openapi.EspecializacaoControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.EspecializacaoService;
@@ -29,6 +30,13 @@ public class EspecializacaoController implements EspecializacaoControllerDocApi 
     @PostMapping("/criar_especializacao")
     public EspecializacaoResponse incluirEspecializacao(@RequestBody EspecializacaoRequest especializacaoRequest) {
         return especializacaoService.incluir(especializacaoRequest);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/atualizar_especializacao")
+    public EspecializacaoResponse atualizarEspecializacao(
+            @RequestBody UpdateEspecializacaoRequest updateEspecializacaoRequest) {
+        return especializacaoService.atualizar(updateEspecializacaoRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)

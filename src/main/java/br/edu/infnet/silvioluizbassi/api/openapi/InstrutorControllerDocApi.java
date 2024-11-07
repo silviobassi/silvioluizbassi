@@ -1,6 +1,9 @@
 package br.edu.infnet.silvioluizbassi.api.openapi;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateAlunoRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateInstrutorRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoResponse;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -23,6 +26,13 @@ public interface InstrutorControllerDocApi {
             @ApiResponse(responseCode = "201", description = "Instrutor incluído")
     })
     InstrutorResponse criarInstrutor(InstrutorRequest instrutorRequest);
+
+    @Operation(summary = "Atualiza um instrutor", responses = {
+            @ApiResponse(responseCode = "200", description = "Instrutor atualizado"),
+            @ApiResponse(responseCode = "404", description = "Instrutor não encontrado",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class)))
+    })
+    InstrutorResponse atualizarInstrutor(UpdateInstrutorRequest updateInstrutorRequest);
 
     @Operation(summary = "Busca um Instrutor pelo ID", responses = {
             @ApiResponse(responseCode = "200", description = "Instrutor encontrado"),

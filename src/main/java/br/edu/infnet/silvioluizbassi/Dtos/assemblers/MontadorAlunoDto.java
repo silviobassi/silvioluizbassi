@@ -1,10 +1,12 @@
 package br.edu.infnet.silvioluizbassi.Dtos.assemblers;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateAlunoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoMatriculaResponse;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
 import br.edu.infnet.silvioluizbassi.model.domain.Contato;
+import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
 
 import java.util.List;
 
@@ -67,6 +69,21 @@ public class MontadorAlunoDto {
         aluno.setBolsista(alunoRequest.isBolsista());
         aluno.setEnem(alunoRequest.isEnem());
         return aluno;
+    }
+
+    public static void toAluno(UpdateAlunoRequest updateAlunoRequest, Aluno aluno, Endereco endereco) {
+
+        Contato contato = new Contato();
+        contato.setEmail(updateAlunoRequest.email());
+        contato.setWhatsApp(updateAlunoRequest.whatsApp());
+
+        aluno.setNome(updateAlunoRequest.nome());
+        aluno.setDataNascimento(updateAlunoRequest.dataNascimento());
+        aluno.setGenero(updateAlunoRequest.genero());
+        aluno.setContato(contato);
+        aluno.setBolsista(updateAlunoRequest.isBolsista());
+        aluno.setEnem(updateAlunoRequest.isEnem());
+        aluno.setEndereco(endereco);
     }
 
 }

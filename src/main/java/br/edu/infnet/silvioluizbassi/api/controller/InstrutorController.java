@@ -1,6 +1,7 @@
 package br.edu.infnet.silvioluizbassi.api.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateInstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.api.openapi.InstrutorControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.InstrutorService;
@@ -28,6 +29,12 @@ public class InstrutorController implements InstrutorControllerDocApi {
     @PostMapping(value = "/criar_instrutor")
     public InstrutorResponse criarInstrutor(@RequestBody InstrutorRequest instrutorRequest) {
         return instrutorService.incluir(instrutorRequest);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping(value = "/atualizar_instrutor")
+    public InstrutorResponse atualizarInstrutor(@RequestBody UpdateInstrutorRequest updateInstrutorRequest) {
+        return instrutorService.atualizar(updateInstrutorRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
