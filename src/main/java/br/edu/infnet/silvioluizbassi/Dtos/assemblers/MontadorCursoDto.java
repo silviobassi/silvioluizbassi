@@ -12,6 +12,8 @@ import br.edu.infnet.silvioluizbassi.model.domain.Especializacao;
 
 import java.util.List;
 
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto.*;
+
 public class MontadorCursoDto {
 
     public static CursoMatriculaResponse toCursoMatriculaResponse(Curso curso) {
@@ -19,17 +21,15 @@ public class MontadorCursoDto {
     }
 
     public static CursoResponse toCursoResponse(Curso curso) {
-        CursoResponse cursoResponse = new CursoResponse();
-        cursoResponse.setId(curso.getId());
-        cursoResponse.setTitulo(curso.getTitulo());
-        cursoResponse.setValor(curso.getValor());
-        cursoResponse.setCargaHoraria(curso.getCargaHoraria());
-        cursoResponse.setPreRequisitos(curso.getPreRequisitos());
-        cursoResponse.setEstagioObrigatorio(curso.isEstagioObrigatorio());
-        cursoResponse.setAtivo(curso.isAtivo());
-        cursoResponse.setInstrutores(MontadorInstrutorDto.toInstrutoresCursoResponse(curso.getInstrutores()));
-
-        return cursoResponse;
+        return new CursoResponse(
+                curso.getId(),
+                curso.getTitulo(),
+                curso.getValor(),
+                curso.getCargaHoraria(),
+                curso.getPreRequisitos(),
+                curso.isEstagioObrigatorio(),
+                curso.isAtivo(),
+                toInstrutoresCursoResponse(curso.getInstrutores()));
     }
 
     public static List<CursoResponse> toCursosResponse(List<Curso> cursos) {
@@ -46,7 +46,7 @@ public class MontadorCursoDto {
                 especializacao.isEstagioObrigatorio(),
                 especializacao.isAtivo(),
                 especializacao.getTipoDeEspecializacao().name(),
-                MontadorInstrutorDto.toInstrutoresCursoResponse(especializacao.getInstrutores())
+                toInstrutoresCursoResponse(especializacao.getInstrutores())
         );
     }
 
@@ -60,7 +60,7 @@ public class MontadorCursoDto {
                 bootcamp.isEstagioObrigatorio(),
                 bootcamp.isAtivo(),
                 bootcamp.getNivelBootcamp(),
-                MontadorInstrutorDto.toInstrutoresCursoResponse(bootcamp.getInstrutores())
+                toInstrutoresCursoResponse(bootcamp.getInstrutores())
         );
     }
 
@@ -89,5 +89,13 @@ public class MontadorCursoDto {
         especializacao.setTipoDeEspecializacao(especializacaoRequest.tipoDeEspecializacao());
 
         return especializacao;
+    }
+
+    public static List<BootcampResponse> toCursosBootcampsResponse(List<Bootcamp> bootcamps) {
+        return bootcamps.stream().map(MontadorCursoDto::toCursoBootcampResponse).toList();
+    }
+
+    public static List<EspecializacaoResponse> toCursosEspecializacoesResponse(List<Especializacao> especializacoes) {
+        return especializacoes.stream().map(MontadorCursoDto::toCursoEspecializacaoResponse).toList();
     }
 }

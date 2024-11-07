@@ -1,26 +1,28 @@
 package br.edu.infnet.silvioluizbassi.exceptions;
 
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 
 @Getter
 public class CustomProblemDetail extends ProblemDetail {
 
-    private final String typeError;
-
-    public CustomProblemDetail(int statusCode, String title, String detail, String typeError) {
+    public CustomProblemDetail(String title, String detail, int statusCode) {
         super(statusCode);
-        this.typeError = typeError;
-        this.setTitle(formatTitle(title));
-        this.setDetail(detail);
-        this.setType(URI.create("https://br.edu.infnet.silvioluizbassi/%s".formatted(formatErrorType(typeError))));
+        setTitle(formatTitle(title));
+        setDetail(detail);
+        setType(URI.create("https://infnet.com/%s".formatted(formatErrorType(title))));
+        setProperty("timestamp", LocalDateTime.now());
     }
 
     private String formatErrorType(String className) {
         return className
                 .replaceAll("([a-z])([A-Z])", "$1-$2")
+                .replaceAll("Exception", "")
+                .replaceAll("-$", "")
                 .toLowerCase()
                 .trim();
     }

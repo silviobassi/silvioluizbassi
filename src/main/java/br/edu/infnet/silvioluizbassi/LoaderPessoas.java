@@ -2,6 +2,7 @@ package br.edu.infnet.silvioluizbassi;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Contato;
 import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
 import br.edu.infnet.silvioluizbassi.model.domain.Genero;
@@ -41,7 +42,7 @@ public class LoaderPessoas implements ApplicationRunner {
         Contato contato = null;
 
         List<Endereco> enderecos = enderecoService.obterEnderecos();
-        int countEnderecos = 0;
+        int countEnderecos = enderecos.size() - 1;
 
         while (line != null) {
             String[] campos = line.split(";");
@@ -60,7 +61,7 @@ public class LoaderPessoas implements ApplicationRunner {
                     );
                     instrutorService.incluir(instrutorRequest);
 
-                    countEnderecos++;
+                    countEnderecos--;
                 }
                 case "A" -> {
 
@@ -76,7 +77,7 @@ public class LoaderPessoas implements ApplicationRunner {
                     );
                     alunoService.incluir(alunoRequest);
 
-                    countEnderecos++;
+                    countEnderecos--;
                 }
                 case "CT" -> {
                     contato = new Contato();

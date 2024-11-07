@@ -1,14 +1,14 @@
 package br.edu.infnet.silvioluizbassi.exceptions;
 
 import org.springframework.http.ProblemDetail;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@ControllerAdvice
-public class GlobalException {
+@RestControllerAdvice
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(ModelBusinessException.class)
     public ProblemDetail handleModelException(ModelBusinessException e) {
-        return new CustomProblemDetail(e.getStatusCode().value(), e.getTypeError(), e.getMessage(), e.getTypeError());
+        return new CustomProblemDetail(e.getTitle(), e.getMessage(), e.getStatusCode().value());
     }
 }

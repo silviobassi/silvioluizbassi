@@ -3,6 +3,9 @@ package br.edu.infnet.silvioluizbassi;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequestId;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.CursoRequestId;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoResponse;
+import br.edu.infnet.silvioluizbassi.Dtos.responses.CursoResponse;
+import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.model.service.AlunoService;
 import br.edu.infnet.silvioluizbassi.model.service.CursoService;
 import br.edu.infnet.silvioluizbassi.model.service.MatriculaService;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.List;
 
 @Component
 @Order(4)
@@ -35,8 +39,11 @@ public class LoaderMatriculas implements ApplicationRunner {
 
         String line = reader.readLine();
 
-        int countAlunos = (int) alunoService.countAlunos();
-        int countCursos = (int) cursoService.countCursos();
+        List<AlunoResponse> alunos = alunoService.obterAlunos();
+        List<CursoResponse> cursos = cursoService.obterCursos();
+
+        int countAlunos = alunos.size() - 1;
+        int countCursos = cursos.size() - 1;
 
         while (line != null) {
             String[] campos = line.split(";");
@@ -44,7 +51,9 @@ public class LoaderMatriculas implements ApplicationRunner {
             if (!campos[0].equalsIgnoreCase("M")) throw new Exception("❌ Não há matrículas a serem carregadas!");
 
             MatriculaRequest matriculaRequest = new MatriculaRequest(
-                    Long.parseLong(campos[1]), new AlunoRequestId(countAlunos), new CursoRequestId(countCursos));
+                    Long.parseLong(campos[1]),
+                    new AlunoRequestId(alunos.get(countAlunos).id()),
+                    new CursoRequestId(cursos.get(countCursos).id()));
 
             countAlunos--;
             countCursos--;

@@ -1,8 +1,14 @@
 package br.edu.infnet.silvioluizbassi;
 
+import br.edu.infnet.silvioluizbassi.Dtos.requests.BootcampRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.EspecializacaoRequest;
+import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequestId;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
-import br.edu.infnet.silvioluizbassi.model.domain.*;
-import br.edu.infnet.silvioluizbassi.model.service.CursoService;
+import br.edu.infnet.silvioluizbassi.model.domain.Especializacao;
+import br.edu.infnet.silvioluizbassi.model.domain.NivelBootcamp;
+import br.edu.infnet.silvioluizbassi.model.domain.TipoEspecializacao;
+import br.edu.infnet.silvioluizbassi.model.service.BootcampService;
+import br.edu.infnet.silvioluizbassi.model.service.EspecializacaoService;
 import br.edu.infnet.silvioluizbassi.model.service.InstrutorService;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -20,11 +26,14 @@ import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto
 public class LoaderCursos implements ApplicationRunner {
 
     private final InstrutorService instrutorService;
-    private final CursoService cursoService;
+    private final BootcampService bootcampService;
+    private final EspecializacaoService especializacaoService;
 
-    public LoaderCursos(InstrutorService instrutorService, CursoService cursoService) {
+    public LoaderCursos(InstrutorService instrutorService, BootcampService bootcampService,
+                        EspecializacaoService especializacaoService) {
         this.instrutorService = instrutorService;
-        this.cursoService = cursoService;
+        this.bootcampService = bootcampService;
+        this.especializacaoService = especializacaoService;
     }
 
     @Override
@@ -35,48 +44,43 @@ public class LoaderCursos implements ApplicationRunner {
         String line = reader.readLine();
 
         List<InstrutorResponse> instrutores = instrutorService.obterInstrutores();
-        int countInstrutores = 0;
+        int countInstrutores = instrutores.size() - 1;
 
         while (line != null) {
             String[] campos = line.split(";");
 
             switch (campos[0].toUpperCase()) {
                 case "BC" -> {
-                    Bootcamp bootcamp = new Bootcamp();
-                    bootcamp.setTitulo(campos[1]);
-                    bootcamp.setDescricao(campos[2]);
-                    bootcamp.setValor(Float.parseFloat(campos[3]));
-                    bootcamp.setCargaHoraria(Integer.parseInt(campos[4]));
-                    bootcamp.setPreRequisitos(campos[5]);
-                    bootcamp.setEstagioObrigatorio(Boolean.parseBoolean(campos[6]));
-                    bootcamp.setAtivo(Boolean.parseBoolean(campos[7]));
-                    bootcamp.setNivelBootcamp(NivelBootcamp.valueOf(campos[9]));
 
-                    if (!instrutores.get(countInstrutores).id().equals(3))
-                        bootcamp.getInstrutores().add(toInstrutor(instrutores.get(countInstrutores)));
+                    BootcampRequest bootcampRequest = new BootcampRequest(
+                            campos[1],
+                            campos[2],
+                            Float.parseFloat(campos[3]),
+                            Integer.parseInt(campos[4]),
+                            campos[5],
+                            Boolean.parseBoolean(campos[6]),
+                            NivelBootcamp.valueOf(campos[9]),
+                            List.of(new InstrutorRequestId(instrutores.get(countInstrutores).id()))
+                    );
 
-                    cursoService.incluir(bootcamp);
-                    countInstrutores++;
+                    bootcampService.incluir(bootcampRequest);
+                    countInstrutores--;
                 }
                 case "EP" -> {
-                    Especializacao especializacao = new Especializacao();
-                    especializacao.setTitulo(campos[1]);
-                    especializacao.setDescricao(campos[2]);
-                    especializacao.setValor(Float.parseFloat(campos[3]));
-                    especializacao.setCargaHoraria(Integer.parseInt(campos[4]));
-                    especializacao.setPreRequisitos(campos[5]);
-                    especializacao.setEstagioObrigatorio(Boolean.parseBoolean(campos[6]));
-                    especializacao.setAtivo(Boolean.parseBoolean(campos[7]));
-                    especializacao.setTipoDeEspecializacao(TipoEspecializacao.valueOf(campos[8]));
-                    especializacao.setEstagioObrigatorio(Boolean.parseBoolean(campos[9]));
 
-                    if (!instrutores.get(countInstrutores).id().equals(3))
-                        especializacao.getInstrutores().add(toInstrutor(instrutores.get(countInstrutores)));
+                    EspecializacaoRequest especializacaoRequest = new EspecializacaoRequest(
+                            campos[1],
+                            campos[2],
+                            Float.parseFloat(campos[3]),
+                            Integer.parseInt(campos[4]),
+                            campos[5],
+                            Boolean.parseBoolean(campos[6]),
+                            TipoEspecializacao.valueOf(campos[8]),
+                            List.of(new InstrutorRequestId(instrutores.get(countInstrutores).id()))
+                    );
 
-                    cursoService.incluir(especializacao);
-                    countInstrutores++;
-
-                    cursoService.incluir(especializacao);
+                    especializacaoService.incluir(especializacaoRequest);
+                    countInstrutores--;
                 }
                 default -> throw new Exception("❌ Não há cursos a serem carregados!");
 

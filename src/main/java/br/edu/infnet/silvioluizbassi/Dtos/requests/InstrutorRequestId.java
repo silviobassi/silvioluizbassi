@@ -1,4 +1,9 @@
 package br.edu.infnet.silvioluizbassi.Dtos.requests;
 
-public record InstrutorRequestId(Integer id) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record InstrutorRequestId(
+        @Schema(example = "1")
+        Integer id
+) {
 }

@@ -1,4 +1,11 @@
 package br.edu.infnet.silvioluizbassi.Dtos.responses;
 
-public record InstrutorCursoResponse(Integer id, String nome) {
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record InstrutorCursoResponse(
+        @Schema(example = "1")
+        Integer id,
+        @Schema(example = "Silvio Bassi")
+        String nome
+) {
 }
