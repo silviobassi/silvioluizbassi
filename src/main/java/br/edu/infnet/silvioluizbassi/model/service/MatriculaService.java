@@ -2,6 +2,7 @@ package br.edu.infnet.silvioluizbassi.model.service;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.MatriculaResponse;
+import br.edu.infnet.silvioluizbassi.exceptions.MatriculaNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
 import br.edu.infnet.silvioluizbassi.model.domain.Curso;
 import br.edu.infnet.silvioluizbassi.model.domain.Matricula;
@@ -41,5 +42,14 @@ public class MatriculaService {
 
     public long countMatriculas() {
         return matriculaRepository.count();
+    }
+
+    public MatriculaResponse obterMatriculaPorId(Integer id) {
+        return toMatriculaResponse(matriculaRepository.findById(id).orElseThrow(MatriculaNotFoundException::new));
+    }
+
+    public void excluir(Integer id) {
+        obterMatriculaPorId(id);
+        matriculaRepository.deleteById(id);
     }
 }

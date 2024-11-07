@@ -29,4 +29,16 @@ public class MatriculaController implements MatriculaControllerDocApi {
     public MatriculaResponse criarMatricula(@RequestBody MatriculaRequest matriculaRequest) {
         return matriculaService.incluir(matriculaRequest);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}/buscar")
+    public MatriculaResponse buscarMatricula(@PathVariable Integer id) {
+        return matriculaService.obterMatriculaPorId(id);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}/excluir_matricula")
+    public void excluirMatricula(@PathVariable Integer id) {
+        matriculaService.excluir(id);
+    }
 }
