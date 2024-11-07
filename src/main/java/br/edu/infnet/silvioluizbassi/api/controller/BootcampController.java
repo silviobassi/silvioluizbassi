@@ -21,19 +21,19 @@ public class BootcampController implements BootcampControllerDocApi {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/lista")
+    @GetMapping("/listar")
     public List<BootcampResponse> listarBootcamps() {
         return bootcampService.obterBootcamps();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/criar_bootcamp")
+    @PostMapping("/criar")
     public BootcampResponse incluirBootcamp(@RequestBody BootcampRequest bootcampRequest) {
         return bootcampService.incluir(bootcampRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/atualizar_bootcamp")
+    @PutMapping("/atualizar")
     public BootcampResponse atualizarBootcamp(@RequestBody UpdateBootcampRequest updateBootcampRequest) {
         return bootcampService.atualizar(updateBootcampRequest);
     }
@@ -45,7 +45,7 @@ public class BootcampController implements BootcampControllerDocApi {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}/excluir_bootcamp")
+    @DeleteMapping("/{id}/excluir")
     public void excluirBootcampPorId(@PathVariable Integer id) {
         bootcampService.excluir(id);
     }

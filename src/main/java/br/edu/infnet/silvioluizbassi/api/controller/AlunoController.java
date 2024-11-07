@@ -20,31 +20,31 @@ public class AlunoController implements AlunoControllerDocApi {
         this.alunoService = alunoService;
     }
 
-    @GetMapping(value = "/lista")
+    @GetMapping(value = "/listar")
     public List<AlunoResponse> listarAlunos() {
         return alunoService.obterAlunos();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/criar_aluno")
+    @PostMapping(value = "/criar")
     public AlunoResponse criarAluno(@RequestBody AlunoRequest alunoRequest) {
         return alunoService.incluir(alunoRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping(value = "/atualizar_aluno")
+    @PutMapping(value = "/atualizar")
     public AlunoResponse atualizarAluno(@RequestBody UpdateAlunoRequest updateAlunoRequest) {
         return alunoService.atualizar(updateAlunoRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/{id}/obter_aluno")
+    @GetMapping(value = "/{id}/buscar")
     public AlunoResponse obterAlunoPorId(@PathVariable Integer id) {
         return alunoService.obterAlunoPorId(id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping(value = "/{id}/excluir_aluno")
+    @DeleteMapping(value = "/{id}/excluir")
     public void excluirAlunoPorId(@PathVariable Integer id) {
         alunoService.excluirAlunoPorId(id);
     }

@@ -20,31 +20,31 @@ public class InstrutorController implements InstrutorControllerDocApi {
         this.instrutorService = instrutorService;
     }
 
-    @GetMapping(value = "/lista")
+    @GetMapping(value = "/listar")
     public List<InstrutorResponse> listarInstrutores() {
         return instrutorService.obterInstrutores();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/criar_instrutor")
+    @PostMapping(value = "/criar")
     public InstrutorResponse criarInstrutor(@RequestBody InstrutorRequest instrutorRequest) {
         return instrutorService.incluir(instrutorRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping(value = "/atualizar_instrutor")
+    @PutMapping(value = "/atualizar")
     public InstrutorResponse atualizarInstrutor(@RequestBody UpdateInstrutorRequest updateInstrutorRequest) {
         return instrutorService.atualizar(updateInstrutorRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/{id}/obter_instrutor")
+    @GetMapping(value = "/{id}/buscar")
     public InstrutorResponse obterInstrutorPorId(@PathVariable Integer id) {
         return instrutorService.obterInstrutorPorId(id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping(value = "/{id}/excluir_instrutor")
+    @DeleteMapping(value = "/{id}/excluir")
     public void excluirInstrutorPorId(@PathVariable Integer id) {
         instrutorService.excluirInstrutorPorId(id);
     }

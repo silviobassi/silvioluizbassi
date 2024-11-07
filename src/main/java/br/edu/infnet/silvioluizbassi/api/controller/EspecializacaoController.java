@@ -21,19 +21,19 @@ public class EspecializacaoController implements EspecializacaoControllerDocApi 
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/lista")
+    @GetMapping("/listar")
     public List<EspecializacaoResponse> listarEspecializacoes() {
         return especializacaoService.obterEspecializacoes();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/criar_especializacao")
+    @PostMapping("/criar")
     public EspecializacaoResponse incluirEspecializacao(@RequestBody EspecializacaoRequest especializacaoRequest) {
         return especializacaoService.incluir(especializacaoRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/atualizar_especializacao")
+    @PutMapping("/atualizar")
     public EspecializacaoResponse atualizarEspecializacao(
             @RequestBody UpdateEspecializacaoRequest updateEspecializacaoRequest) {
         return especializacaoService.atualizar(updateEspecializacaoRequest);
@@ -46,7 +46,7 @@ public class EspecializacaoController implements EspecializacaoControllerDocApi 
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}/excluir_especializacao")
+    @DeleteMapping("/{id}/excluir")
     public void excluirEspecializacaoPorId(@PathVariable Integer id) {
         especializacaoService.excluir(id);
     }

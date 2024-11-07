@@ -20,19 +20,19 @@ public class MatriculaController implements MatriculaControllerDocApi {
         this.matriculaService = matriculaService;
     }
 
-    @GetMapping(value = "/lista")
+    @GetMapping(value = "/listar")
     public List<MatriculaResponse> listarMatriculas() {
         return matriculaService.obterMatriculas();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/criar_matricula")
+    @PostMapping(value = "/criar")
     public MatriculaResponse criarMatricula(@RequestBody MatriculaRequest matriculaRequest) {
         return matriculaService.incluir(matriculaRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/atualizar_matricula")
+    @PutMapping("/atualizar")
     public MatriculaResponse atualizarMatricula(@RequestBody UpdateMatriculaRequest updateMatriculaRequest) {
         return matriculaService.atualizar(updateMatriculaRequest);
     }
@@ -44,7 +44,7 @@ public class MatriculaController implements MatriculaControllerDocApi {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}/excluir_matricula")
+    @DeleteMapping("/{id}/excluir")
     public void excluirMatricula(@PathVariable Integer id) {
         matriculaService.excluir(id);
     }
