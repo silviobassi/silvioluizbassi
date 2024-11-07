@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/instrutores")
 public class InstrutorController implements InstrutorControllerApi {
 
     private final InstrutorService instrutorService;
@@ -18,7 +19,7 @@ public class InstrutorController implements InstrutorControllerApi {
         this.instrutorService = instrutorService;
     }
 
-    @GetMapping(value = "/lista/instrutores")
+    @GetMapping(value = "/lista")
     public List<InstrutorResponse> listarInstrutores() {
         return instrutorService.obterInstrutores();
     }

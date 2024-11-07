@@ -2,6 +2,7 @@ package br.edu.infnet.silvioluizbassi.api.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoResponse;
+import br.edu.infnet.silvioluizbassi.api.openapi.AlunoControllerApi;
 import br.edu.infnet.silvioluizbassi.model.service.AlunoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -11,8 +12,9 @@ import java.util.List;
 
 
 @RestController
-@Tag(name = "Aluno", description = "Endpoints para gestão de alunos")
-public class AlunoController {
+
+@RequestMapping(value = "/alunos")
+public class AlunoController implements AlunoControllerApi {
 
     private final AlunoService alunoService;
 
@@ -20,7 +22,7 @@ public class AlunoController {
         this.alunoService = alunoService;
     }
 
-    @GetMapping(value = "/lista/alunos")
+    @GetMapping(value = "/lista")
     public List<AlunoResponse> listarAlunos() {
         return alunoService.obterAlunos();
     }

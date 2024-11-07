@@ -1,8 +1,6 @@
 package br.edu.infnet.silvioluizbassi.api.openapi;
 
-import br.edu.infnet.silvioluizbassi.Dtos.requests.BootcampRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.EspecializacaoRequest;
-import br.edu.infnet.silvioluizbassi.Dtos.responses.BootcampResponse;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.EspecializacaoResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -13,7 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import java.util.List;
 
-@Tag(name = "Especializacao", description = "API de Especializações")
+@Tag(name = "Especialização", description = "Endpoints de Especialização")
 public interface EspecializacaoControllerApi {
 
 

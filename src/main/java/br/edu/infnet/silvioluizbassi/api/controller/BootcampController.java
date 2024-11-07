@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cursos/bootcamps")
+@RequestMapping("/bootcamps")
 public class BootcampController implements BootcampControllerApi {
 
     private final BootcampService bootcampService;

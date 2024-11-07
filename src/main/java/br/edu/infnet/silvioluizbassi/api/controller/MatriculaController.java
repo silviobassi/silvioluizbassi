@@ -2,16 +2,16 @@ package br.edu.infnet.silvioluizbassi.api.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.MatriculaResponse;
+import br.edu.infnet.silvioluizbassi.api.openapi.MatriculaControllerApi;
 import br.edu.infnet.silvioluizbassi.model.service.MatriculaService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@Tag(name = "Matrícula", description = "Endpoints para gestão de matriculas")
-public class MatriculaController {
+@RequestMapping(value = "/matriculas")
+public class MatriculaController implements MatriculaControllerApi {
 
     private final MatriculaService matriculaService;
 
@@ -19,7 +19,7 @@ public class MatriculaController {
         this.matriculaService = matriculaService;
     }
 
-    @GetMapping(value = "/lista/matriculas")
+    @GetMapping(value = "/lista")
     public List<MatriculaResponse> listarMatriculas() {
         return matriculaService.obterMatriculas();
     }

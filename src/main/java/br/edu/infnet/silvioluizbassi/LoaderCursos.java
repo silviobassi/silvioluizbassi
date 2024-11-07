@@ -4,7 +4,6 @@ import br.edu.infnet.silvioluizbassi.Dtos.requests.BootcampRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.EspecializacaoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequestId;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
-import br.edu.infnet.silvioluizbassi.model.domain.Especializacao;
 import br.edu.infnet.silvioluizbassi.model.domain.NivelBootcamp;
 import br.edu.infnet.silvioluizbassi.model.domain.TipoEspecializacao;
 import br.edu.infnet.silvioluizbassi.model.service.BootcampService;
@@ -17,9 +16,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
-
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto.toInstrutor;
 
 @Component
 @Order(3)
@@ -49,6 +47,12 @@ public class LoaderCursos implements ApplicationRunner {
         while (line != null) {
             String[] campos = line.split(";");
 
+            final List<InstrutorRequestId> instrutorRequestIds = new ArrayList<>();
+
+            if (!instrutores.get(countInstrutores).id().equals(instrutores.size() - 1)) {
+                instrutorRequestIds.add(new InstrutorRequestId(instrutores.get(countInstrutores).id()));
+            }
+
             switch (campos[0].toUpperCase()) {
                 case "BC" -> {
 
@@ -60,11 +64,10 @@ public class LoaderCursos implements ApplicationRunner {
                             campos[5],
                             Boolean.parseBoolean(campos[6]),
                             NivelBootcamp.valueOf(campos[9]),
-                            List.of(new InstrutorRequestId(instrutores.get(countInstrutores).id()))
+                            instrutorRequestIds
                     );
 
                     bootcampService.incluir(bootcampRequest);
-                    countInstrutores--;
                 }
                 case "EP" -> {
 
@@ -76,15 +79,17 @@ public class LoaderCursos implements ApplicationRunner {
                             campos[5],
                             Boolean.parseBoolean(campos[6]),
                             TipoEspecializacao.valueOf(campos[8]),
-                            List.of(new InstrutorRequestId(instrutores.get(countInstrutores).id()))
+                            instrutorRequestIds
                     );
 
                     especializacaoService.incluir(especializacaoRequest);
-                    countInstrutores--;
+
                 }
                 default -> throw new Exception("❌ Não há cursos a serem carregados!");
 
             }
+
+            countInstrutores--;
 
             line = reader.readLine();
         }

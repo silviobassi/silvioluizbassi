@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cursos/especializacoes")
+@RequestMapping("/especializacoes")
 public class EspecializacaoController implements EspecializacaoControllerApi {
 
     private final EspecializacaoService especializacaoService;
