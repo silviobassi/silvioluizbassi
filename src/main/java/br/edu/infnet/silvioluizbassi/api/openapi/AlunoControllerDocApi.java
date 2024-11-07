@@ -15,7 +15,7 @@ import java.util.List;
 public interface AlunoControllerDocApi {
 
     @Operation(summary = "Lista todos os alunos", responses = {
-            @ApiResponse(responseCode = "200", description = "Alunos listados"),
+            @ApiResponse(responseCode = "200", description = "Alunos listados")
     })
     List<AlunoResponse> listarAlunos();
 

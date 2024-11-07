@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/matriculas")
-public class MatriculaControllerDoc implements MatriculaControllerDocApi {
+public class MatriculaController implements MatriculaControllerDocApi {
 
     private final MatriculaService matriculaService;
 
-    public MatriculaControllerDoc(MatriculaService matriculaService) {
+    public MatriculaController(MatriculaService matriculaService) {
         this.matriculaService = matriculaService;
     }
 

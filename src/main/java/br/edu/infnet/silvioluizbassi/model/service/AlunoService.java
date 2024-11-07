@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorAlunoDto.toAlunoResponse;
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorAlunoDto.toAlunosResponse;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorAlunoDto.*;
 
 @Service
 public class AlunoService {
@@ -35,17 +34,7 @@ public class AlunoService {
         Endereco endereco = localizacaoService.findByCep(alunoRequest.cep());
         endereco = enderecoService.incluir(endereco);
 
-        Contato contato = new Contato();
-        contato.setEmail(alunoRequest.email());
-        contato.setWhatsApp(alunoRequest.whatsApp());
-
-        Aluno aluno = new Aluno();
-        aluno.setNome(alunoRequest.nome());
-        aluno.setContato(contato);
-        aluno.setDataNascimento(alunoRequest.dataNascimento());
-        aluno.setGenero(alunoRequest.genero());
-        aluno.setBolsista(alunoRequest.isBolsista());
-        aluno.setEnem(alunoRequest.isEnem());
+        Aluno aluno = toAluno(alunoRequest);
 
         aluno.setEndereco(endereco);
         return toAlunoResponse(pessoaRepository.save(aluno));

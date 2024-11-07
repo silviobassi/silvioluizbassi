@@ -1,5 +1,6 @@
 package br.edu.infnet.silvioluizbassi.Dtos.assemblers;
 
+import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.MatriculaResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Matricula;
 
@@ -23,4 +24,9 @@ public class MontadorMatriculaDto {
         return matriculas.stream().map(MontadorMatriculaDto::toMatriculaResponse).toList();
     }
 
+    public static Matricula toMatricula(MatriculaRequest matriculaRequest) {
+        Matricula matricula = new Matricula();
+        matricula.setNumeroDaMatricula(matriculaRequest.numeroMatricula());
+        return matricula;
+    }
 }

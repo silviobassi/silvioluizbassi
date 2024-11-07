@@ -9,15 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
-
 @RequestMapping(value = "/alunos")
-public class AlunoControllerDoc implements AlunoControllerDocApi {
+public class AlunoController implements AlunoControllerDocApi {
 
     private final AlunoService alunoService;
 
-    public AlunoControllerDoc(AlunoService alunoService) {
+    public AlunoController(AlunoService alunoService) {
         this.alunoService = alunoService;
     }
 

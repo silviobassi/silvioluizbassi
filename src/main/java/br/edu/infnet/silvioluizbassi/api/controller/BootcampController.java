@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/bootcamps")
-public class BootcampControllerDoc implements BootcampControllerDocApi {
+public class BootcampController implements BootcampControllerDocApi {
 
     private final BootcampService bootcampService;
 
-    public BootcampControllerDoc(BootcampService bootcampService) {
+    public BootcampController(BootcampService bootcampService) {
         this.bootcampService = bootcampService;
     }
 

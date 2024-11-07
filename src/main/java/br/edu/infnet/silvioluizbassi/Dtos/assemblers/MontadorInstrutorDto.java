@@ -1,5 +1,6 @@
 package br.edu.infnet.silvioluizbassi.Dtos.assemblers;
 
+import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorCursoResponse;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorMatriculaResponse;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
@@ -70,6 +71,22 @@ public class MontadorInstrutorDto {
         instrutor.setEndereco(toEndereco(instrutorResponse.endereco()));
         instrutor.setFormacao(instrutorResponse.formacao());
         instrutor.setEspecialidade(instrutorResponse.especialidade());
+
+        return instrutor;
+    }
+
+    public static Instrutor toInstrutor(InstrutorRequest instrutorRequest) {
+        Contato contato = new Contato();
+        contato.setEmail(instrutorRequest.email());
+        contato.setWhatsApp(instrutorRequest.whatsApp());
+
+        Instrutor instrutor = new Instrutor();
+        instrutor.setNome(instrutorRequest.nome());
+        instrutor.setDataNascimento(instrutorRequest.dataNascimento());
+        instrutor.setGenero(instrutorRequest.genero());
+        instrutor.setContato(contato);
+        instrutor.setFormacao(instrutorRequest.formacao());
+        instrutor.setEspecialidade(instrutorRequest.especialidade());
 
         return instrutor;
     }

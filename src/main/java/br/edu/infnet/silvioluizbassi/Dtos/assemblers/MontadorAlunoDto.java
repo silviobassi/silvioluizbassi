@@ -1,14 +1,15 @@
 package br.edu.infnet.silvioluizbassi.Dtos.assemblers;
 
+import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoMatriculaResponse;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoResponse;
-import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
 import br.edu.infnet.silvioluizbassi.model.domain.Contato;
 
 import java.util.List;
 
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorEnderecoDto.*;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorEnderecoDto.toEndereco;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorEnderecoDto.toEnderecoResponse;
 
 public class MontadorAlunoDto {
 
@@ -49,6 +50,22 @@ public class MontadorAlunoDto {
         aluno.setEndereco(toEndereco(alunoResponse.endereco()));
         aluno.setBolsista(alunoResponse.isBolsista());
         aluno.setEnem(alunoResponse.isEnem());
+        return aluno;
+    }
+
+    public static Aluno toAluno(AlunoRequest alunoRequest) {
+
+        Contato contato = new Contato();
+        contato.setEmail(alunoRequest.email());
+        contato.setWhatsApp(alunoRequest.whatsApp());
+
+        Aluno aluno = new Aluno();
+        aluno.setNome(alunoRequest.nome());
+        aluno.setDataNascimento(alunoRequest.dataNascimento());
+        aluno.setGenero(alunoRequest.genero());
+        aluno.setContato(contato);
+        aluno.setBolsista(alunoRequest.isBolsista());
+        aluno.setEnem(alunoRequest.isEnem());
         return aluno;
     }
 

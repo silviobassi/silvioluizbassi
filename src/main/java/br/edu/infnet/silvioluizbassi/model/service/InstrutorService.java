@@ -3,7 +3,6 @@ package br.edu.infnet.silvioluizbassi.model.service;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.exceptions.InstrutorNotFoundException;
-import br.edu.infnet.silvioluizbassi.model.domain.Contato;
 import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
 import br.edu.infnet.silvioluizbassi.model.domain.Instrutor;
 import br.edu.infnet.silvioluizbassi.model.repository.InstrutorRepository;
@@ -12,8 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto.toInstrutorResponse;
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto.toInstrutoresResponse;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto.*;
 
 @Service
 public class InstrutorService {
@@ -36,17 +34,7 @@ public class InstrutorService {
         Endereco endereco = localizacaoService.findByCep(instrutorRequest.cep());
         endereco = enderecoService.incluir(endereco);
 
-        Contato contato = new Contato();
-        contato.setEmail(instrutorRequest.email());
-        contato.setWhatsApp(instrutorRequest.whatsApp());
-
-        Instrutor instrutor = new Instrutor();
-        instrutor.setNome(instrutorRequest.nome());
-        instrutor.setContato(contato);
-        instrutor.setDataNascimento(instrutorRequest.dataNascimento());
-        instrutor.setGenero(instrutorRequest.genero());
-        instrutor.setFormacao(instrutorRequest.formacao());
-        instrutor.setEspecialidade(instrutorRequest.especialidade());
+        Instrutor instrutor = toInstrutor(instrutorRequest);
 
         instrutor.setEndereco(endereco);
         return toInstrutorResponse(pessoaRepository.save(instrutor));

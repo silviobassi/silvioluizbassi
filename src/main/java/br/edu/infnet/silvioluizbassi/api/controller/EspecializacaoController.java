@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/especializacoes")
-public class EspecializacaoControllerDoc implements EspecializacaoControllerDocApi {
+public class EspecializacaoController implements EspecializacaoControllerDocApi {
 
     private final EspecializacaoService especializacaoService;
 
-    public EspecializacaoControllerDoc(EspecializacaoService especializacaoService) {
+    public EspecializacaoController(EspecializacaoService especializacaoService) {
         this.especializacaoService = especializacaoService;
     }
 

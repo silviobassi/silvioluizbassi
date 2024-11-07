@@ -1,6 +1,5 @@
 package br.edu.infnet.silvioluizbassi.model.service;
 
-import br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorAlunoDto;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.MatriculaResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
@@ -11,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaDto.toMatriculaResponse;
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaDto.toMatriculasResponse;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorAlunoDto.toAluno;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorMatriculaDto.*;
 
 @Service
 public class MatriculaService {
@@ -29,9 +28,8 @@ public class MatriculaService {
 
     public MatriculaResponse incluir(MatriculaRequest matriculaRequest) {
         Curso curso = cursoService.obterCursoPorId(matriculaRequest.curso().id());
-        Aluno aluno = MontadorAlunoDto.toAluno(alunoService.obterAlunoPorId(matriculaRequest.aluno().id()));
-        Matricula matricula = new Matricula();
-        matricula.setNumeroDaMatricula(matriculaRequest.numeroMatricula());
+        Aluno aluno = toAluno(alunoService.obterAlunoPorId(matriculaRequest.aluno().id()));
+        Matricula matricula = toMatricula(matriculaRequest);
         matricula.setCurso(curso);
         matricula.setAluno(aluno);
         return toMatriculaResponse(matriculaRepository.save(matricula));

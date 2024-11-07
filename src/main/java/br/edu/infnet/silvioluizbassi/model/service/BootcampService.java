@@ -1,5 +1,6 @@
 package br.edu.infnet.silvioluizbassi.model.service;
 
+import br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorBootcampDto;
 import br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorInstrutorDto;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.BootcampRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.BootcampResponse;
@@ -12,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorCursoDto.toCursoBootcampResponse;
-import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorCursoDto.toCursosBootcampsResponse;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorBootcampDto.toBootcampResponse;
+import static br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorBootcampDto.toBootcampsResponse;
 
 @Service
 public class BootcampService {
@@ -29,7 +30,7 @@ public class BootcampService {
     }
 
     public BootcampResponse incluir(BootcampRequest bootcampRequest) {
-        Bootcamp bootcamp = new Bootcamp();
+        Bootcamp bootcamp = MontadorBootcampDto.toBootcamp(bootcampRequest);
 
         bootcampRequest.instrutores().forEach(instrutorRequest -> {
             Instrutor instrutor = MontadorInstrutorDto
@@ -37,18 +38,11 @@ public class BootcampService {
             bootcamp.getInstrutores().add(instrutor);
         });
 
-        bootcamp.setTitulo(bootcampRequest.titulo());
-        bootcamp.setValor(bootcampRequest.valor());
-        bootcamp.setCargaHoraria(bootcampRequest.cargaHoraria());
-        bootcamp.setPreRequisitos(bootcampRequest.preRequisitos());
-        bootcamp.setEstagioObrigatorio(bootcampRequest.estagioObrigatorio());
-        bootcamp.setNivelBootcamp(bootcampRequest.nivel());
-
-        return toCursoBootcampResponse(cursoRepository.save(bootcamp));
+        return toBootcampResponse(cursoRepository.save(bootcamp));
     }
 
     public List<BootcampResponse> obterBootcamps() {
-        return toCursosBootcampsResponse(bootcampRepository.findAll());
+        return toBootcampsResponse(bootcampRepository.findAll());
     }
 
     public long countBootcamps() {
@@ -56,7 +50,7 @@ public class BootcampService {
     }
 
     public BootcampResponse obterBootcampPorId(Integer id) {
-        return toCursoBootcampResponse(bootcampRepository.findById(id).orElseThrow(CursoNotFoundException::new));
+        return toBootcampResponse(bootcampRepository.findById(id).orElseThrow(CursoNotFoundException::new));
     }
 
     public void excluir(Integer id) {

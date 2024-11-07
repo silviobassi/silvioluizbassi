@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/instrutores")
-public class InstrutorControllerDoc implements InstrutorControllerDocApi {
+public class InstrutorController implements InstrutorControllerDocApi {
 
     private final InstrutorService instrutorService;
 
-    public InstrutorControllerDoc(InstrutorService instrutorService) {
+    public InstrutorController(InstrutorService instrutorService) {
         this.instrutorService = instrutorService;
     }
 

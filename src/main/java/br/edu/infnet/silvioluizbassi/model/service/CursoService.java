@@ -3,12 +3,8 @@ package br.edu.infnet.silvioluizbassi.model.service;
 import br.edu.infnet.silvioluizbassi.Dtos.assemblers.MontadorCursoDto;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.CursoResponse;
 import br.edu.infnet.silvioluizbassi.exceptions.CursoNotFoundException;
-import br.edu.infnet.silvioluizbassi.model.domain.Bootcamp;
 import br.edu.infnet.silvioluizbassi.model.domain.Curso;
-import br.edu.infnet.silvioluizbassi.model.domain.Especializacao;
-import br.edu.infnet.silvioluizbassi.model.repository.BootcampRepository;
 import br.edu.infnet.silvioluizbassi.model.repository.CursoRepository;
-import br.edu.infnet.silvioluizbassi.model.repository.EspecializacaoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,42 +13,13 @@ import java.util.List;
 public class CursoService {
 
     private final CursoRepository cursoRepository;
-    private final EspecializacaoRepository especializacaoRepository;
-    private final BootcampRepository bootcampRepository;
 
-    public CursoService(CursoRepository cursoRepository, EspecializacaoRepository especializacaoRepository,
-                        BootcampRepository bootcampRepository) {
+    public CursoService(CursoRepository cursoRepository) {
         this.cursoRepository = cursoRepository;
-        this.especializacaoRepository = especializacaoRepository;
-        this.bootcampRepository = bootcampRepository;
-    }
-
-    public Curso incluir(Curso curso) {
-        return cursoRepository.save(curso);
     }
 
     public List<CursoResponse> obterCursos() {
         return MontadorCursoDto.toCursosResponse(cursoRepository.findAll());
-    }
-
-    public List<Especializacao> obterEspecializacoes() {
-        return especializacaoRepository.findAll();
-    }
-
-    public List<Bootcamp> obterBootcamps() {
-        return bootcampRepository.findAll();
-    }
-
-    public long countCursos() {
-        return cursoRepository.count();
-    }
-
-    public long countEspecializacoes() {
-        return especializacaoRepository.count();
-    }
-
-    public long countBootcamps() {
-        return bootcampRepository.count();
     }
 
     public Curso obterCursoPorId(Integer id) {
