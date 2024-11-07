@@ -2,7 +2,7 @@ package br.edu.infnet.silvioluizbassi.api.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
-import br.edu.infnet.silvioluizbassi.api.openapi.InstrutorControllerApi;
+import br.edu.infnet.silvioluizbassi.api.openapi.InstrutorControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.InstrutorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/instrutores")
-public class InstrutorController implements InstrutorControllerApi {
+public class InstrutorControllerDoc implements InstrutorControllerDocApi {
 
     private final InstrutorService instrutorService;
 
-    public InstrutorController(InstrutorService instrutorService) {
+    public InstrutorControllerDoc(InstrutorService instrutorService) {
         this.instrutorService = instrutorService;
     }
 

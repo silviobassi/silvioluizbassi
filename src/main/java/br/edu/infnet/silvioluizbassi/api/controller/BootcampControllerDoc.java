@@ -2,7 +2,7 @@ package br.edu.infnet.silvioluizbassi.api.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.BootcampRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.BootcampResponse;
-import br.edu.infnet.silvioluizbassi.api.openapi.BootcampControllerApi;
+import br.edu.infnet.silvioluizbassi.api.openapi.BootcampControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.BootcampService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/bootcamps")
-public class BootcampController implements BootcampControllerApi {
+public class BootcampControllerDoc implements BootcampControllerDocApi {
 
     private final BootcampService bootcampService;
 
-    public BootcampController(BootcampService bootcampService) {
+    public BootcampControllerDoc(BootcampService bootcampService) {
         this.bootcampService = bootcampService;
     }
 

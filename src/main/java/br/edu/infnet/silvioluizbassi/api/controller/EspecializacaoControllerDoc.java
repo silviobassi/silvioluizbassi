@@ -2,7 +2,7 @@ package br.edu.infnet.silvioluizbassi.api.controller;
 
 import br.edu.infnet.silvioluizbassi.Dtos.requests.EspecializacaoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.EspecializacaoResponse;
-import br.edu.infnet.silvioluizbassi.api.openapi.EspecializacaoControllerApi;
+import br.edu.infnet.silvioluizbassi.api.openapi.EspecializacaoControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.EspecializacaoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/especializacoes")
-public class EspecializacaoController implements EspecializacaoControllerApi {
+public class EspecializacaoControllerDoc implements EspecializacaoControllerDocApi {
 
     private final EspecializacaoService especializacaoService;
 
-    public EspecializacaoController(EspecializacaoService especializacaoService) {
+    public EspecializacaoControllerDoc(EspecializacaoService especializacaoService) {
         this.especializacaoService = especializacaoService;
     }
 

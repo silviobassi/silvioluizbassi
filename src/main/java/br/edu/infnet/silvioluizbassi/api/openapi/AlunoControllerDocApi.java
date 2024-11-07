@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 
 @Tag(name = "Aluno", description = "Endpoints para gestão de alunos")
-public interface AlunoControllerApi {
+public interface AlunoControllerDocApi {
 
     @Operation(summary = "Lista todos os alunos", responses = {
             @ApiResponse(responseCode = "200", description = "Alunos listados"),

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @Tag(name = "Matrícula", description = "Endpoints de Matriculas")
-public interface MatriculaControllerApi {
+public interface MatriculaControllerDocApi {
 
     @Operation(summary = "Lista todas as matrículas", responses = {
             @ApiResponse(responseCode = "200", description = "Matrículas listadas")

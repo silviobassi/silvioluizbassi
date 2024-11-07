@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 
 @Tag(name = "Bootcamp", description = "Endpoints de Bootcamp")
-public interface BootcampControllerApi {
+public interface BootcampControllerDocApi {
 
 
     @Operation(summary = "Lista todos os bootcamps", responses = {

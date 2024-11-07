@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 
 @Tag(name = "Instrutor", description = "Endpoints de Instrutor")
-public interface InstrutorControllerApi {
+public interface InstrutorControllerDocApi {
 
     @Operation(summary = "Lista todos os instrutores", responses = {
             @ApiResponse(responseCode = "200", description = "Instrutores listados")

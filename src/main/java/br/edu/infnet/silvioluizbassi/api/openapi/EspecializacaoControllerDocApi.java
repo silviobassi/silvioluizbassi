@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 
 @Tag(name = "Especialização", description = "Endpoints de Especialização")
-public interface EspecializacaoControllerApi {
+public interface EspecializacaoControllerDocApi {
 
 
     @Operation(summary = "Lista todos as especializações", responses = {
