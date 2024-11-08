@@ -45,4 +45,5 @@ public interface MatriculaControllerDocApi {
                     content = @Content(schema = @Schema(implementation = ProblemDetailModel.class)))
     })
     void excluirMatricula(@Parameter(description = "ID da Matrícula") Integer id);
+
 }

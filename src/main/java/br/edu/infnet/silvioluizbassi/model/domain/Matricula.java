@@ -36,4 +36,5 @@ public class Matricula {
                 numeroDaMatricula, dataMatricula, ativa, curso, aluno
         );
     }
+
 }

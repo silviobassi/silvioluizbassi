@@ -1,7 +1,6 @@
-package br.edu.infnet.silvioluizbassi.exceptions;
+package br.edu.infnet.silvioluizbassi.exceptionshandler;
 
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 
 import java.net.URI;

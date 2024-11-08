@@ -3,7 +3,7 @@ package br.edu.infnet.silvioluizbassi.model.service;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.AlunoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateAlunoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoResponse;
-import br.edu.infnet.silvioluizbassi.exceptions.AlunoNotFoundException;
+import br.edu.infnet.silvioluizbassi.exceptionshandler.AlunoNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
 import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
 import br.edu.infnet.silvioluizbassi.model.repository.AlunoRepository;

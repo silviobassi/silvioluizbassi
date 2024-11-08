@@ -1,18 +1,18 @@
-package br.edu.infnet.silvioluizbassi.exceptions;
+package br.edu.infnet.silvioluizbassi.exceptionshandler;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
-public abstract class ModelBusinessException extends RuntimeException {
+public abstract class ModelNotFoundException extends RuntimeException {
 
     private final String title;
     private final HttpStatus statusCode;
 
-    public ModelBusinessException(String message, String title, HttpStatus statusCode) {
+    public ModelNotFoundException(String message, String title) {
         super(message);
         this.title = title;
-        this.statusCode = statusCode;
+        this.statusCode = HttpStatus.NOT_FOUND;
     }
 
     public String getTypeError() {

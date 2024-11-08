@@ -3,7 +3,7 @@ package br.edu.infnet.silvioluizbassi.model.service;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.EspecializacaoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateEspecializacaoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.EspecializacaoResponse;
-import br.edu.infnet.silvioluizbassi.exceptions.CursoNotFoundException;
+import br.edu.infnet.silvioluizbassi.exceptionshandler.CursoNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Especializacao;
 import br.edu.infnet.silvioluizbassi.model.domain.Instrutor;
 import br.edu.infnet.silvioluizbassi.model.repository.EspecializacaoRepository;

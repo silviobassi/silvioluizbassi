@@ -3,7 +3,7 @@ package br.edu.infnet.silvioluizbassi.model.service;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.MatriculaRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateMatriculaRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.MatriculaResponse;
-import br.edu.infnet.silvioluizbassi.exceptions.MatriculaNotFoundException;
+import br.edu.infnet.silvioluizbassi.exceptionshandler.MatriculaNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
 import br.edu.infnet.silvioluizbassi.model.domain.Curso;
 import br.edu.infnet.silvioluizbassi.model.domain.Matricula;

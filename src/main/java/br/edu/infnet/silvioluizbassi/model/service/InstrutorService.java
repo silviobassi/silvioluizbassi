@@ -3,7 +3,7 @@ package br.edu.infnet.silvioluizbassi.model.service;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.InstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateInstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
-import br.edu.infnet.silvioluizbassi.exceptions.InstrutorNotFoundException;
+import br.edu.infnet.silvioluizbassi.exceptionshandler.InstrutorNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
 import br.edu.infnet.silvioluizbassi.model.domain.Instrutor;
 import br.edu.infnet.silvioluizbassi.model.repository.InstrutorRepository;

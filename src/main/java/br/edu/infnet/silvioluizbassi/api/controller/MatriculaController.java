@@ -48,4 +48,5 @@ public class MatriculaController implements MatriculaControllerDocApi {
     public void excluirMatricula(@PathVariable Integer id) {
         matriculaService.excluir(id);
     }
+
 }

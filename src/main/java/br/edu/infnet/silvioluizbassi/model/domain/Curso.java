@@ -30,4 +30,8 @@ public abstract class Curso {
             joinColumns = @JoinColumn(name = "curso_id"),
             inverseJoinColumns = @JoinColumn(name = "instrutor_id"))
     private List<Instrutor> instrutores = new ArrayList<>();
+
+    public void alterarPreco(float preco) {
+        this.valor = preco;
+    }
 }

@@ -3,7 +3,7 @@ package br.edu.infnet.silvioluizbassi.model.service;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.BootcampRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateBootcampRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.BootcampResponse;
-import br.edu.infnet.silvioluizbassi.exceptions.CursoNotFoundException;
+import br.edu.infnet.silvioluizbassi.exceptionshandler.CursoNotFoundException;
 import br.edu.infnet.silvioluizbassi.model.domain.Bootcamp;
 import br.edu.infnet.silvioluizbassi.model.domain.Instrutor;
 import br.edu.infnet.silvioluizbassi.model.repository.BootcampRepository;
