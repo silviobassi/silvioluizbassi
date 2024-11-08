@@ -50,7 +50,7 @@ Este projeto é um Sistema de Gerenciamento de Matrículas construído com Sprin
 ### Acessando a Aplicação
 
 - A aplicação está disponível em `http://localhost:8080/`.
-- Swagger UI pode ser acessado em `http://localhost:8080/swagger-ui/index.html`.
+- O Swagger UI pode ser acessado em `http://localhost:8080/swagger-ui/index.html`.
 
 ## Configuração
 
