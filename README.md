@@ -37,7 +37,7 @@ Este projeto é um Sistema de Gerenciamento de Matrículas construído com Sprin
 
 ### Instalação
 
-1. Clone the repository:
+1. Clone o repositório:
     ```sh
     git clone https://github.com/silviobassi/silvioluizbassi.git
     cd silvioluizbassi
