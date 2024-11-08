@@ -114,5 +114,5 @@ Os arquivos para executar os endpoints em um client como Postman estão disponí
 ---
 ![Silvio Luiz Bassi](https://img.shields.io/badge/Developed%20by-Silvio%20Luiz%20Bassi-orange)
 
-![GitHub](https://img.shields.io/badge/GitHub-GestaoMatriculas-blue?logo=github)
+![GitHub](https://img.shields.io/badge/GitHub-Gestao%20de%20Matriculas-blue?logo=github)
 ![Status](https://img.shields.io/badge/Status-Concluído-green)
