@@ -52,10 +52,6 @@ Este projeto é um Sistema de Gerenciamento de Matrículas construído com Sprin
 - A aplicação está disponível em `http://localhost:8080/`.
 - Swagger UI pode ser acessado em `http://localhost:8080/swagger-ui/index.html`.
 
-### Swagger
-
-O Swagger está habilitado por padrão. Você pode personalizar a configuração do Swagger na classe `SwaggerConfig`.
-
 ## Configuração
 
 ### Database
