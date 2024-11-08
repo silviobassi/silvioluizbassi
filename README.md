@@ -4,6 +4,18 @@
 
 Este projeto é um Sistema de Gerenciamento de Matrículas construído com Spring Boot.
 
+## Tecnologias Utilizadas
+
+- Java
+- Spring Boot
+- Maven
+- H2 Database
+- Swagger (Springfox)
+
+## Modelagem do Domínio - Diagrama de Classes
+
+![img.png](domain-diagram.png)
+
 ## Features
 
 - **Gerenciamento de Matrículas**: Adicionar, atualizar, excluir e listar matrículas.
@@ -13,14 +25,6 @@ Este projeto é um Sistema de Gerenciamento de Matrículas construído com Sprin
 - **Gerenciamento de Bootcamps**: Adicionar, atualizar, excluir e listar bootcamps.
 - **Gerenciamento de Especializações**: Adicionar, atualizar, excluir e listar especializações.
 - **Integração com Swagger**: Documentação e teste da API usando Swagger UI.
-
-## Tecnologias Utilizadas
-
-- Java
-- Spring Boot
-- Maven
-- H2 Database
-- Swagger (Springfox)
 
 ## Executando a Aplicação
 
