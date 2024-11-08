@@ -8,6 +8,8 @@ Este projeto é um Sistema de Gerenciamento de Matrículas construído com Sprin
 
 - Java
 - Spring Boot
+- Spring Data JPA
+- Spring Validation
 - Maven
 - H2 Database
 - Swagger (Springfox)
