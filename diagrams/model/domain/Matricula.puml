@@ -3,7 +3,5 @@ class Matricula {
   - numeroDaMatricula : long
   - dataDaCompra : LocalDateTime
   - ativa : boolean
-  - curso : Curso
-  - aluno : Aluno
 }
 @enduml

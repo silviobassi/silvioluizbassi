@@ -16,7 +16,7 @@ Este projeto é um Sistema de Gerenciamento de Matrículas construído com Sprin
 
 ## Modelagem do Domínio - Diagrama de Classes
 
-![img.png](domain-diagram.png)
+![img.png](domain-class-diagram.png)
 
 ## Features
 
