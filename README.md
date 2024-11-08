@@ -50,7 +50,7 @@ Este projeto é um Sistema de Gerenciamento de Matrículas construído com Sprin
 ### Acessando a Aplicação
 
 - A aplicação está disponível em `http://localhost:8080/`.
-- Swagger UI can be accessed at `http://localhost:8080/swagger-ui/index.html`.
+- Swagger UI pode ser acessado em `http://localhost:8080/swagger-ui/index.html`.
 
 ### Swagger
 
@@ -60,7 +60,7 @@ O Swagger está habilitado por padrão. Você pode personalizar a configuração
 
 ### Database
 
-The application uses H2 in-memory database por padrão. Você pode configurar o banco de dados no arquivo
+A aplicação utiliza H2 in-memory database por padrão. Você pode configurar o banco de dados no arquivo
 `application.yml`.
 
 ## Utilização
