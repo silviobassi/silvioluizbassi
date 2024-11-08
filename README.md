@@ -96,7 +96,7 @@ Os arquivos para executar os endpoints em um client como Postman estão disponí
     - ![POST](https://img.shields.io/badge/POST-blue) `/bootcamps/criar`: Cria um novo bootcamp
     - ![PUT](https://img.shields.io/badge/PUT-yellow) `/bootcamps/1/atualizar`: Atualiza um bootcamp
     - ![GET](https://img.shields.io/badge/GET-green) `/bootcamps/3/buscar`: Recupera um bootcamp por ID
-    - ![DELETE](https://img.shields.io/badge/DELETE-red) `/bootcamps/{id}/excluir`: Exclui um bootcamp por ID
+    - ![DELETE](https://img.shields.io/badge/DELETE-red) `/bootcamps/1/excluir`: Exclui um bootcamp por ID
 
 - **Especializacao**
     - ![GET](https://img.shields.io/badge/GET-green) `/especializacoes/listar`: Lista todas as especializações
