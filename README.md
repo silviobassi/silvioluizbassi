@@ -12,7 +12,7 @@ Este projeto é um Sistema de Gerenciamento de Matrículas construído com Sprin
 - Spring Validation
 - Maven
 - H2 Database
-- Swagger (Springfox)
+- Swagger (Springdoc-Openapi)
 
 ## Modelagem do Domínio - Diagrama de Classes
 
