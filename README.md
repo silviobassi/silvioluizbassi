@@ -43,12 +43,12 @@ Este projeto é um Sistema de Gerenciamento de Matrículas construído com Sprin
     cd silvioluizbassi
     ```
 
-2. Build the project:
+2. Build o projeto:
     ```sh
     mvn clean install
     ```
 
-3. Run the application:
+3. Execute a aplicação:
     ```sh
     mvn spring-boot:run
     ```
