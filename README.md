@@ -77,7 +77,7 @@ Os arquivos para executar os endpoints em um client como Postman estão disponí
     - ![POST](https://img.shields.io/badge/POST-blue) `/instrutores/criar`: Cria um novo instrutor
     - ![PUT](https://img.shields.io/badge/PUT-yellow) `/instrutores/1/atualizar`: Atualiza um instrutor
     - ![GET](https://img.shields.io/badge/GET-green) `/instrutores/2/buscar`: Recupera um instrutor por ID
-    - ![DELETE](https://img.shields.io/badge/DELETE-red) `/instrutores/{id}/excluir`: Exclui um instrutor por ID
+    - ![DELETE](https://img.shields.io/badge/DELETE-red) `/instrutores/3/excluir`: Exclui um instrutor por ID
 
 - **Alunos**
     - ![GET](https://img.shields.io/badge/GET-green) `/alunos/listar`: Lista todos os alunos
