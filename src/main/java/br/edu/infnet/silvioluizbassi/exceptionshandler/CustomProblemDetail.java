@@ -29,9 +29,9 @@ public class CustomProblemDetail extends ProblemDetail {
 
     private String formatErrorType(String className) {
         return className
-                .replaceAll("([a-z])([A-Z])", "$1-$2")
-                .replaceAll("\\s+", "-")
                 .toLowerCase()
+                .replaceAll(" ", "-")
+                .replaceAll("-+", "-")
                 .trim();
     }
 }
