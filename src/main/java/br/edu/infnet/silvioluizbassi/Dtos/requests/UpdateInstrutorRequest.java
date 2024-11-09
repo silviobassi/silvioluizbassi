@@ -1,6 +1,5 @@
 package br.edu.infnet.silvioluizbassi.Dtos.requests;
 
-import br.edu.infnet.silvioluizbassi.model.domain.Genero;
 import br.edu.infnet.silvioluizbassi.validation.GeneroValido;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;

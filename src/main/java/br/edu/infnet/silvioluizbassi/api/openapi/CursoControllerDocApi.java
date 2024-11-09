@@ -19,15 +19,18 @@ public interface CursoControllerDocApi {
     List<CursoResponse> listarCursos();
 
     @Operation(summary = "Lista todos os cursos por preços fornecidos", responses = {
-            @ApiResponse(responseCode = "200", description = "Cursos listados por preços fornecidos")
+            @ApiResponse(responseCode = "200", description = "Cursos listados por preços fornecidos"),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
     })
     List<CursoResponse> listarCursosPorPrecos(float precoInicial, float precoFinal);
 
     @Operation(summary = "Atualiza o preço de um curso", responses = {
             @ApiResponse(responseCode = "200", description = "Preço do curso atualizado"),
             @ApiResponse(responseCode = "404", description = "Curso não encontrado",
-                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class))
-            )
+                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class))),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
     })
     CursoResponse atualizarPreco(UpdatePrecoCursoRequest updatePrecoCursoRequest);
 }

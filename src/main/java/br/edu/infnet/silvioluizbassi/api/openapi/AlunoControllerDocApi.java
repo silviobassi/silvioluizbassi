@@ -23,14 +23,18 @@ public interface AlunoControllerDocApi {
     @Operation(summary = "Inclui um novo aluno", responses = {
             @ApiResponse(responseCode = "201", description = "Aluno incluído"),
             @ApiResponse(responseCode = "404", description = "Curso não encontrado",
-                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class)))
+                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class))),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
     })
     AlunoResponse criarAluno(AlunoRequest alunoRequest);
 
     @Operation(summary = "Atualiza um aluno", responses = {
             @ApiResponse(responseCode = "200", description = "Aluno atualizado"),
             @ApiResponse(responseCode = "404", description = "Aluno não encontrado",
-                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class)))
+                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class))),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
     })
     AlunoResponse atualizarAluno(UpdateAlunoRequest updateAlunoRequest);
 

@@ -23,14 +23,18 @@ public interface InstrutorControllerDocApi {
     List<InstrutorResponse> listarInstrutores();
 
     @Operation(summary = "Inclui um novo instrutor", responses = {
-            @ApiResponse(responseCode = "201", description = "Instrutor incluído")
+            @ApiResponse(responseCode = "201", description = "Instrutor incluído"),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
     })
     InstrutorResponse criarInstrutor(InstrutorRequest instrutorRequest);
 
     @Operation(summary = "Atualiza um instrutor", responses = {
             @ApiResponse(responseCode = "200", description = "Instrutor atualizado"),
             @ApiResponse(responseCode = "404", description = "Instrutor não encontrado",
-                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class)))
+                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class))),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
     })
     InstrutorResponse atualizarInstrutor(UpdateInstrutorRequest updateInstrutorRequest);
 

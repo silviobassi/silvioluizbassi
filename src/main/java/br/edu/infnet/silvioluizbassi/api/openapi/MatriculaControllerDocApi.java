@@ -21,15 +21,19 @@ public interface MatriculaControllerDocApi {
     List<MatriculaResponse> listarMatriculas();
 
     @Operation(summary = "Inclui uma nova matrícula", responses = {
-            @ApiResponse(responseCode = "201", description = "Matrícula incluída")
+            @ApiResponse(responseCode = "201", description = "Matrícula incluída"),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
     })
     MatriculaResponse criarMatricula(MatriculaRequest matriculaRequest);
 
     @Operation(summary = "Atualiza uma matrícula", responses = {
             @ApiResponse(responseCode = "200", description = "Matrícula atualizada"),
             @ApiResponse(responseCode = "404", description = "Matrícula não encontrada",
-                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class))
-            )})
+                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class))),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
+    })
     MatriculaResponse atualizarMatricula(UpdateMatriculaRequest updateMatriculaRequest);
 
     @Operation(summary = "Busca uma matrícula pelo id", responses = {

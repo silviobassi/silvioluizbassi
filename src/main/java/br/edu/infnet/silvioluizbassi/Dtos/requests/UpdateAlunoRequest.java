@@ -13,7 +13,9 @@ public record UpdateAlunoRequest(
         @NotNull
         @Min(1)
         Integer id,
-        @Schema(example = "Marta Soraia") String nome,
+        @Schema(example = "Marta Soraia")
+        @NotBlank
+        String nome,
         @NotNull
         LocalDateTime dataNascimento,
         @Schema(example = "FEMININO")

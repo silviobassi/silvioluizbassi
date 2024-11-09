@@ -22,14 +22,18 @@ public interface EspecializacaoControllerDocApi {
     List<EspecializacaoResponse> listarEspecializacoes();
 
     @Operation(summary = "Inclui uma nova especialização", responses = {
-            @ApiResponse(responseCode = "201", description = "Especialização incluída")
+            @ApiResponse(responseCode = "201", description = "Especialização incluída"),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
     })
     EspecializacaoResponse incluirEspecializacao(EspecializacaoRequest especializacaoRequest);
 
     @Operation(summary = "Atualiza uma especialização", responses = {
             @ApiResponse(responseCode = "200", description = "Especialização atualizada"),
             @ApiResponse(responseCode = "404", description = "Especialização não encontrada",
-                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class)))
+                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class))),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
     })
     EspecializacaoResponse atualizarEspecializacao(UpdateEspecializacaoRequest updateEspecializacaoRequest);
 

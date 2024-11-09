@@ -9,7 +9,9 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public record AlunoRequest(
-        @Schema(example = "Marta Soraia") String nome,
+        @Schema(example = "Marta Soraia")
+        @NotBlank
+        String nome,
         @NotNull
         LocalDateTime dataNascimento,
         @Schema(example = "FEMININO")

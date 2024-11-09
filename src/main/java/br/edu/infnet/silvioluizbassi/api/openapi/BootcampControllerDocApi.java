@@ -22,14 +22,18 @@ public interface BootcampControllerDocApi {
     List<BootcampResponse> listarBootcamps();
 
     @Operation(summary = "Inclui um novo bootcamp", responses = {
-            @ApiResponse(responseCode = "201", description = "Bootcamp incluído")
+            @ApiResponse(responseCode = "201", description = "Bootcamp incluído"),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
     })
     BootcampResponse incluirBootcamp(BootcampRequest bootcampRequest);
 
     @Operation(summary = "Atualiza um bootcamp", responses = {
             @ApiResponse(responseCode = "200", description = "Bootcamp atualizado"),
             @ApiResponse(responseCode = "404", description = "Bootcamp não encontrado",
-                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class)))
+                    content = @Content(schema = @Schema(implementation = ProblemDetailModel.class))),
+            @ApiResponse(responseCode = "400", description = "Verifique os campos em (errors)",
+                    content = @Content(schema = @Schema(implementation = ProblemDetailFieldValidatorModel.class)))
     })
     BootcampResponse atualizarBootcamp(UpdateBootcampRequest updateBootcampRequest);
 
