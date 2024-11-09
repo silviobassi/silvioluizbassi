@@ -10,7 +10,7 @@ public record UpdateMatriculaRequest(
         Integer id,
         @Min(1)
         @Schema(example = "2584965")
-        long numeroMatricula,
+        long numeroDaMatricula,
 
         @NotNull
         @Valid

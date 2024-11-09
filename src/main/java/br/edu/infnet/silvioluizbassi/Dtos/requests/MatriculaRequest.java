@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 public record MatriculaRequest(
         @Min(1)
         @Schema(example = "2584965")
-        long numeroMatricula,
+        long numeroDaMatricula,
 
         @NotNull
         @Valid

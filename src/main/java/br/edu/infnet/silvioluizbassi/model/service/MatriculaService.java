@@ -32,7 +32,7 @@ public class MatriculaService {
         Curso curso = cursoService.obterCursoPorId(matriculaRequest.curso().id());
         Aluno aluno = alunoService.getAlunoPorId(matriculaRequest.aluno().id());
         Matricula matricula = new Matricula();
-        matricula.setNumeroDaMatricula(matriculaRequest.numeroMatricula());
+        matricula.setNumeroDaMatricula(matriculaRequest.numeroDaMatricula());
         matricula.setCurso(curso);
         matricula.setAluno(aluno);
         return toMatriculaResponse(matriculaRepository.save(matricula));
@@ -44,7 +44,7 @@ public class MatriculaService {
 
         Matricula matricula = getMatriculaPorId(updateMatriculaRequest.id());
 
-        matricula.setNumeroDaMatricula(updateMatriculaRequest.numeroMatricula());
+        matricula.setNumeroDaMatricula(updateMatriculaRequest.numeroDaMatricula());
         matricula.setCurso(curso);
         matricula.setAluno(aluno);
 
