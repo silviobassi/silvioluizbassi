@@ -9,14 +9,9 @@ public abstract class ModelNotFoundException extends RuntimeException {
     private final String title;
     private final HttpStatus statusCode;
 
-    public ModelNotFoundException(String message, String title) {
+    public ModelNotFoundException(String message) {
         super(message);
-        this.title = title;
+        this.title = "Not Found";
         this.statusCode = HttpStatus.NOT_FOUND;
     }
-
-    public String getTypeError() {
-        return title;
-    }
-
 }

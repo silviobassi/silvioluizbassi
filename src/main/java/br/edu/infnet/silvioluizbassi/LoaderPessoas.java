@@ -68,7 +68,7 @@ public class LoaderPessoas implements ApplicationRunner {
                     AlunoRequest alunoRequest = new AlunoRequest(
                             campos[1],
                             LocalDateTime.parse(campos[2]),
-                            Genero.valueOf(campos[3]),
+                            Genero.valueOf(campos[3]).name(),
                             contato.getEmail(),
                             contato.getWhatsApp(),
                             enderecos.get(countEnderecos).getCep(),

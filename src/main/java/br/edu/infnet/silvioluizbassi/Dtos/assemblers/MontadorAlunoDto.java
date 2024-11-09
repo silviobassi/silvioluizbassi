@@ -7,6 +7,7 @@ import br.edu.infnet.silvioluizbassi.Dtos.responses.AlunoResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Aluno;
 import br.edu.infnet.silvioluizbassi.model.domain.Contato;
 import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
+import br.edu.infnet.silvioluizbassi.model.domain.Genero;
 
 import java.util.List;
 
@@ -64,7 +65,7 @@ public class MontadorAlunoDto {
         Aluno aluno = new Aluno();
         aluno.setNome(alunoRequest.nome());
         aluno.setDataNascimento(alunoRequest.dataNascimento());
-        aluno.setGenero(alunoRequest.genero());
+        aluno.setGenero(Genero.valueOf(alunoRequest.genero()));
         aluno.setContato(contato);
         aluno.setBolsista(alunoRequest.isBolsista());
         aluno.setEnem(alunoRequest.isEnem());
@@ -79,7 +80,7 @@ public class MontadorAlunoDto {
 
         aluno.setNome(updateAlunoRequest.nome());
         aluno.setDataNascimento(updateAlunoRequest.dataNascimento());
-        aluno.setGenero(updateAlunoRequest.genero());
+        aluno.setGenero(Genero.valueOf(updateAlunoRequest.genero()));
         aluno.setContato(contato);
         aluno.setBolsista(updateAlunoRequest.isBolsista());
         aluno.setEnem(updateAlunoRequest.isEnem());

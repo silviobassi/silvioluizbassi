@@ -4,10 +4,10 @@ import org.springframework.http.HttpStatus;
 
 public class InstrutorNotFoundException extends ModelNotFoundException {
     public InstrutorNotFoundException() {
-        super("Instrutor não encontrado", InstrutorNotFoundException.class.getSimpleName());
+        super("Instrutor não encontrado");
     }
 
     public InstrutorNotFoundException(Integer id) {
-        super("Instrutor com o id %d não encontrado".formatted(id), InstrutorNotFoundException.class.getSimpleName());
+        super("Instrutor com o id %d não encontrado".formatted(id));
     }
 }

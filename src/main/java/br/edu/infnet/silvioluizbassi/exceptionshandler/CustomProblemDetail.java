@@ -5,13 +5,23 @@ import org.springframework.http.ProblemDetail;
 
 import java.net.URI;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Getter
 public class CustomProblemDetail extends ProblemDetail {
 
+    public CustomProblemDetail(String title, String detail, int statusCode, Map<String, String> fieldErrorsMap) {
+        super(statusCode);
+        setTitle(title);
+        setDetail(detail);
+        setType(URI.create("https://infnet.com/%s".formatted(formatErrorType(title))));
+        setProperty("timestamp", LocalDateTime.now());
+        setProperty("errors", fieldErrorsMap);
+    }
+
     public CustomProblemDetail(String title, String detail, int statusCode) {
         super(statusCode);
-        setTitle(formatTitle(title));
+        setTitle(title);
         setDetail(detail);
         setType(URI.create("https://infnet.com/%s".formatted(formatErrorType(title))));
         setProperty("timestamp", LocalDateTime.now());
@@ -20,17 +30,8 @@ public class CustomProblemDetail extends ProblemDetail {
     private String formatErrorType(String className) {
         return className
                 .replaceAll("([a-z])([A-Z])", "$1-$2")
-                .replaceAll("Exception", "")
-                .replaceAll("-$", "")
+                .replaceAll("\\s+", "-")
                 .toLowerCase()
                 .trim();
     }
-
-    private String formatTitle(String className) {
-        return className
-                .replaceAll("([a-z])([A-Z])", "$1 $2")
-                .replaceAll("Exception", "")
-                .trim();
-    }
-
 }

@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class AlunoNotFoundException extends ModelNotFoundException {
 
     public AlunoNotFoundException() {
-        super("Aluno não encontrado", AlunoNotFoundException.class.getSimpleName());
+        super("Aluno não encontrado");
     }
 
     public AlunoNotFoundException(Integer id) {
-        super("Aluno com %d não encontrado".formatted(id), AlunoNotFoundException.class.getSimpleName());
+        super("Aluno com %d não encontrado".formatted(id));
     }
 
 }

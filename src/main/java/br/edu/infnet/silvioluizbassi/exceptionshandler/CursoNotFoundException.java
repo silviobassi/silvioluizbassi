@@ -5,11 +5,11 @@ import org.springframework.http.HttpStatus;
 public class CursoNotFoundException extends ModelNotFoundException {
 
     public CursoNotFoundException() {
-        super("Curso não encontrado", CursoNotFoundException.class.getSimpleName());
+        super("Curso não encontrado");
     }
 
     public CursoNotFoundException(Integer id) {
-        super("Curso com %d não encontrado".formatted(id), CursoNotFoundException.class.getSimpleName());
+        super("Curso com %d não encontrado".formatted(id));
     }
 
 }

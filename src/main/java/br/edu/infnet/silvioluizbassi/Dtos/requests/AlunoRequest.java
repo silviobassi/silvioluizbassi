@@ -1,24 +1,35 @@
 package br.edu.infnet.silvioluizbassi.Dtos.requests;
 
-import br.edu.infnet.silvioluizbassi.model.domain.Genero;
+import br.edu.infnet.silvioluizbassi.validation.GeneroValido;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
 public record AlunoRequest(
         @Schema(example = "Marta Soraia") String nome,
+        @NotNull
         LocalDateTime dataNascimento,
         @Schema(example = "FEMININO")
-        Genero genero,
+        @GeneroValido
+        String genero,
         @Schema(example = "marta@marta.email.com")
+        @NotBlank
+        @Email
         String email,
         @Schema(example = "+552199999-9999")
+        @NotBlank
         String whatsApp,
         @Schema(example = "13403-775")
+        @NotBlank
         String cep,
         @Schema(example = "true")
-        boolean isBolsista,
+        @NotNull
+        Boolean isBolsista,
         @Schema(example = "false")
-        boolean isEnem
+        @NotNull
+        Boolean isEnem
 ) {
 }
