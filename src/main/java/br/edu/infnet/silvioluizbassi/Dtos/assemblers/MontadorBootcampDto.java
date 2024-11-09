@@ -4,6 +4,7 @@ import br.edu.infnet.silvioluizbassi.Dtos.requests.BootcampRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateBootcampRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.BootcampResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Bootcamp;
+import br.edu.infnet.silvioluizbassi.model.domain.NivelBootcamp;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class MontadorBootcampDto {
         bootcamp.setCargaHoraria(bootcampRequest.cargaHoraria());
         bootcamp.setPreRequisitos(bootcampRequest.preRequisitos());
         bootcamp.setEstagioObrigatorio(bootcampRequest.estagioObrigatorio());
-        bootcamp.setNivelBootcamp(bootcampRequest.nivel());
+        bootcamp.setNivelBootcamp(NivelBootcamp.valueOf(bootcampRequest.nivel()));
 
         return bootcamp;
     }
@@ -59,7 +60,7 @@ public class MontadorBootcampDto {
         bootcamp.setCargaHoraria(updateBootcampRequest.cargaHoraria());
         bootcamp.setPreRequisitos(updateBootcampRequest.preRequisitos());
         bootcamp.setEstagioObrigatorio(updateBootcampRequest.estagioObrigatorio());
-        bootcamp.setNivelBootcamp(updateBootcampRequest.nivel());
+        bootcamp.setNivelBootcamp(NivelBootcamp.valueOf(updateBootcampRequest.nivel()));
     }
 
     public static List<BootcampResponse> toBootcampsResponse(List<Bootcamp> bootcamps) {

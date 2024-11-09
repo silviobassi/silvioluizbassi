@@ -7,6 +7,7 @@ import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorMatriculaResponse;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Contato;
 import br.edu.infnet.silvioluizbassi.model.domain.Endereco;
+import br.edu.infnet.silvioluizbassi.model.domain.Genero;
 import br.edu.infnet.silvioluizbassi.model.domain.Instrutor;
 
 import java.util.List;
@@ -85,7 +86,7 @@ public class MontadorInstrutorDto {
         Instrutor instrutor = new Instrutor();
         instrutor.setNome(instrutorRequest.nome());
         instrutor.setDataNascimento(instrutorRequest.dataNascimento());
-        instrutor.setGenero(instrutorRequest.genero());
+        instrutor.setGenero(Genero.valueOf(instrutorRequest.genero()));
         instrutor.setContato(contato);
         instrutor.setFormacao(instrutorRequest.formacao());
         instrutor.setEspecialidade(instrutorRequest.especialidade());
@@ -100,7 +101,7 @@ public class MontadorInstrutorDto {
 
         instrutor.setNome(updateInstrutorRequest.nome());
         instrutor.setDataNascimento(updateInstrutorRequest.dataNascimento());
-        instrutor.setGenero(updateInstrutorRequest.genero());
+        instrutor.setGenero(Genero.valueOf(updateInstrutorRequest.genero()));
         instrutor.setContato(contato);
         instrutor.setFormacao(updateInstrutorRequest.formacao());
         instrutor.setEspecialidade(updateInstrutorRequest.especialidade());

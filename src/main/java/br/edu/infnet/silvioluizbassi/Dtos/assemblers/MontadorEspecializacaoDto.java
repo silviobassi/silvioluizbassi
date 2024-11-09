@@ -4,6 +4,7 @@ import br.edu.infnet.silvioluizbassi.Dtos.requests.EspecializacaoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateEspecializacaoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.EspecializacaoResponse;
 import br.edu.infnet.silvioluizbassi.model.domain.Especializacao;
+import br.edu.infnet.silvioluizbassi.model.domain.TipoEspecializacao;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class MontadorEspecializacaoDto {
         especializacao.setCargaHoraria(especializacaoRequest.cargaHoraria());
         especializacao.setPreRequisitos(especializacaoRequest.preRequisitos());
         especializacao.setEstagioObrigatorio(especializacaoRequest.estagioObrigatorio());
-        especializacao.setTipoDeEspecializacao(especializacaoRequest.tipoDeEspecializacao());
+        especializacao.setTipoDeEspecializacao(TipoEspecializacao.valueOf(especializacaoRequest.tipoDeEspecializacao()));
 
         return especializacao;
     }
@@ -47,7 +48,8 @@ public class MontadorEspecializacaoDto {
         especializacao.setCargaHoraria(updateEspecializacaoRequest.cargaHoraria());
         especializacao.setPreRequisitos(updateEspecializacaoRequest.preRequisitos());
         especializacao.setEstagioObrigatorio(updateEspecializacaoRequest.estagioObrigatorio());
-        especializacao.setTipoDeEspecializacao(updateEspecializacaoRequest.tipoDeEspecializacao());
+        especializacao.setTipoDeEspecializacao(
+                TipoEspecializacao.valueOf(updateEspecializacaoRequest.tipoDeEspecializacao()));
 
     }
 

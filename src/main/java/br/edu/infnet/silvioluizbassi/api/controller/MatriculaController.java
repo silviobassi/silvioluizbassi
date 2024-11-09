@@ -5,6 +5,7 @@ import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateMatriculaRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.MatriculaResponse;
 import br.edu.infnet.silvioluizbassi.api.openapi.MatriculaControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.MatriculaService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +28,13 @@ public class MatriculaController implements MatriculaControllerDocApi {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/criar")
-    public MatriculaResponse criarMatricula(@RequestBody MatriculaRequest matriculaRequest) {
+    public MatriculaResponse criarMatricula(@RequestBody @Valid MatriculaRequest matriculaRequest) {
         return matriculaService.incluir(matriculaRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/atualizar")
-    public MatriculaResponse atualizarMatricula(@RequestBody UpdateMatriculaRequest updateMatriculaRequest) {
+    public MatriculaResponse atualizarMatricula(@RequestBody @Valid UpdateMatriculaRequest updateMatriculaRequest) {
         return matriculaService.atualizar(updateMatriculaRequest);
     }
 

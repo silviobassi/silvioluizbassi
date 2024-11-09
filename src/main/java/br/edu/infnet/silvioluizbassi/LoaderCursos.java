@@ -63,7 +63,7 @@ public class LoaderCursos implements ApplicationRunner {
                             Integer.parseInt(campos[4]),
                             campos[5],
                             Boolean.parseBoolean(campos[6]),
-                            NivelBootcamp.valueOf(campos[9]),
+                            NivelBootcamp.valueOf(campos[9]).name(),
                             instrutorRequestIds
                     );
 
@@ -78,7 +78,7 @@ public class LoaderCursos implements ApplicationRunner {
                             Integer.parseInt(campos[4]),
                             campos[5],
                             Boolean.parseBoolean(campos[6]),
-                            TipoEspecializacao.valueOf(campos[8]),
+                            TipoEspecializacao.valueOf(campos[8]).name(),
                             instrutorRequestIds
                     );
 

@@ -5,6 +5,7 @@ import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateEspecializacaoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.EspecializacaoResponse;
 import br.edu.infnet.silvioluizbassi.api.openapi.EspecializacaoControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.EspecializacaoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,14 +29,14 @@ public class EspecializacaoController implements EspecializacaoControllerDocApi 
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/criar")
-    public EspecializacaoResponse incluirEspecializacao(@RequestBody EspecializacaoRequest especializacaoRequest) {
+    public EspecializacaoResponse incluirEspecializacao(@RequestBody @Valid EspecializacaoRequest especializacaoRequest) {
         return especializacaoService.incluir(especializacaoRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/atualizar")
     public EspecializacaoResponse atualizarEspecializacao(
-            @RequestBody UpdateEspecializacaoRequest updateEspecializacaoRequest) {
+            @Valid @RequestBody UpdateEspecializacaoRequest updateEspecializacaoRequest) {
         return especializacaoService.atualizar(updateEspecializacaoRequest);
     }
 

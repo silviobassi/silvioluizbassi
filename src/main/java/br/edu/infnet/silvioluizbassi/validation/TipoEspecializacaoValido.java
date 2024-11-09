@@ -8,11 +8,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = GeneroValidoValidator.class)
+@Constraint(validatedBy = TipoEspecializacaoValidoValidator.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface GeneroValido {
-    String message() default "Invalid gender";
+public @interface TipoEspecializacaoValido {
+    String message() default "invalid specialization type";
 
     Class<?>[] groups() default {};
 

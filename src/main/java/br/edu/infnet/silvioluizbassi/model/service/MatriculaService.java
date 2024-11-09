@@ -44,7 +44,7 @@ public class MatriculaService {
 
         Matricula matricula = getMatriculaPorId(updateMatriculaRequest.id());
 
-        matricula.setNumeroDaMatricula(updateMatriculaRequest.numeroDaMatricula());
+        matricula.setNumeroDaMatricula(updateMatriculaRequest.numeroMatricula());
         matricula.setCurso(curso);
         matricula.setAluno(aluno);
 

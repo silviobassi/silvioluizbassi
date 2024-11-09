@@ -5,6 +5,7 @@ import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateInstrutorRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.InstrutorResponse;
 import br.edu.infnet.silvioluizbassi.api.openapi.InstrutorControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.InstrutorService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +28,13 @@ public class InstrutorController implements InstrutorControllerDocApi {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/criar")
-    public InstrutorResponse criarInstrutor(@RequestBody InstrutorRequest instrutorRequest) {
+    public InstrutorResponse criarInstrutor(@RequestBody @Valid InstrutorRequest instrutorRequest) {
         return instrutorService.incluir(instrutorRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(value = "/atualizar")
-    public InstrutorResponse atualizarInstrutor(@RequestBody UpdateInstrutorRequest updateInstrutorRequest) {
+    public InstrutorResponse atualizarInstrutor(@RequestBody @Valid UpdateInstrutorRequest updateInstrutorRequest) {
         return instrutorService.atualizar(updateInstrutorRequest);
     }
 

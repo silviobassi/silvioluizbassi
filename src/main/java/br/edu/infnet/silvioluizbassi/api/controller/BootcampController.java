@@ -5,6 +5,7 @@ import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdateBootcampRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.BootcampResponse;
 import br.edu.infnet.silvioluizbassi.api.openapi.BootcampControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.BootcampService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,13 +29,13 @@ public class BootcampController implements BootcampControllerDocApi {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/criar")
-    public BootcampResponse incluirBootcamp(@RequestBody BootcampRequest bootcampRequest) {
+    public BootcampResponse incluirBootcamp(@RequestBody @Valid BootcampRequest bootcampRequest) {
         return bootcampService.incluir(bootcampRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/atualizar")
-    public BootcampResponse atualizarBootcamp(@RequestBody UpdateBootcampRequest updateBootcampRequest) {
+    public BootcampResponse atualizarBootcamp(@RequestBody @Valid UpdateBootcampRequest updateBootcampRequest) {
         return bootcampService.atualizar(updateBootcampRequest);
     }
 

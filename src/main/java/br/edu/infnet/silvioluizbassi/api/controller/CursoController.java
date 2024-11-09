@@ -4,6 +4,7 @@ import br.edu.infnet.silvioluizbassi.Dtos.requests.UpdatePrecoCursoRequest;
 import br.edu.infnet.silvioluizbassi.Dtos.responses.CursoResponse;
 import br.edu.infnet.silvioluizbassi.api.openapi.CursoControllerDocApi;
 import br.edu.infnet.silvioluizbassi.model.service.CursoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class CursoController implements CursoControllerDocApi {
 
     @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/preco/atualizar")
-    public CursoResponse atualizarPreco(@RequestBody UpdatePrecoCursoRequest updatePrecoCursoRequest) {
+    public CursoResponse atualizarPreco(@RequestBody @Valid UpdatePrecoCursoRequest updatePrecoCursoRequest) {
         return cursoService.atualizarPreco(updatePrecoCursoRequest);
     }
 }
