@@ -3,7 +3,7 @@ spring:
     name: silvioluizbassi
 
   datasource:
-    url: jdbc:mysql://localhost:3306/silviobassi
+    url: jdbc:mysql://localhost:3307/silviobassi
     username: silvio
     password: mysql123
     driverClassName: com.mysql.cj.jdbc.Driver
