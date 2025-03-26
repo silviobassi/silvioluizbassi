@@ -2,19 +2,15 @@ spring:
   application:
     name: silvioluizbassi
 
-  h2:
-    console:
-      enabled: true
   datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:~/silviobassi
-    username: sa
-    password:
+    url: jdbc:mysql://localhost:3307/silviobassi
+    username: silvio
+    password: mysql123
+    driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 
 server:
   error:
@@ -23,3 +19,14 @@ server:
 springdoc:
   api-docs:
     path: /api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+  endpoint:
+    health:
+      probes:
+        enabled: true
