@@ -19,14 +19,3 @@ server:
 springdoc:
   api-docs:
     path: /api-docs
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health
-
-  endpoint:
-    health:
-      probes:
-        enabled: true
