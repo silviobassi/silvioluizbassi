@@ -2,11 +2,11 @@ spring:
   application:
     name: silvioluizbassi
 
-  datasource:
-    url: jdbc:mysql://localhost:3307/silviobassi
-    username: silvio
-    password: mysql123
-    driverClassName: com.mysql.cj.jdbc.Driver
+  #datasource:
+    #url: jdbc:mysql://localhost:3307/silviobassi
+    #username: silvio
+    #password: mysql123
+    #driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
     hibernate:
