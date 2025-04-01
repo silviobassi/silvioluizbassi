@@ -41,7 +41,7 @@ jobs:
 
       - name: Check if EKS cluster exists
         run: |
-          eksctl get cluster --name app-course-cluster || eksctl create cluster -f eks.yml
+          eksctl get cluster --name app-course-cluster || eksctl create cluster -f ../../manifests/k8/eks.yml
 
 #      # Etapa 4: Build da aplicação
 #      - name: Build the application
