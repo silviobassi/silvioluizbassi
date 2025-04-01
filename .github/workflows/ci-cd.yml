@@ -15,15 +15,16 @@ jobs:
     steps:
       # Etapa 1: Checkout do código
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # Etapa 2: Configuração AWS (criar cluster EKS se não existir)
       - name: Set up AWS CLI
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: 'us-east-1'  # Ajuste para sua região
+          aws-region: ''
+
 
       # Etapa 3: Verificar se o eksctl está instalado
       - name: Check if eksctl is installed
@@ -42,61 +43,61 @@ jobs:
         run: |
           eksctl get cluster --name app-course-cluster || eksctl create cluster -f eks.yml
 
-      # Etapa 4: Build da aplicação
-      - name: Build the application
-        run: |
-          ./mvnw clean package -DskipTests
-
-      # Etapa 5: Criação da imagem Docker
-      - name: Build Docker image
-        run: |
-          docker build -t silviobassi/app-course:1.0.0 .
-
-      # Etapa 6: Autenticação no Docker Hub
-      - name: Docker login
-        run: |
-          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-
-      # Etapa 7: Enviar imagem para o Docker Hub
-      - name: Push Docker image to Docker Hub
-        run: |
-          docker push silviobassi/app-course:1.0.0
-
-      # Etapa 8: Aplicar manifestos do Kubernetes
-      - name: Apply MySQL deployment
-        run: |
-          kubectl apply -f mysql-deployment.yml
-      - name: Apply app deployment
-        run: |
-          kubectl apply -f app-deployment.yml
-
-      # Etapa 9: Instalar ferramentas de monitoramento
-      - name: Install NGINX Ingress Controller
-        run: |
-          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-          helm repo update
-          helm install nginx-ingress ingress-nginx/ingress-nginx --create-namespace --namespace ingress-nginx
-
-      - name: Install Prometheus and Grafana
-        run: |
-          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-          helm repo update
-          helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
-            --namespace infnet-monitoring --create-namespace \
-            --set adminUser=infnet \
-            --set adminPassword=infnet \
-            --set grafana.ingress.enabled=false \
-            --set grafana.persistence.enabled=true \
-            --set grafana.persistence.size=5Gi \
-            --set prometheus.server.persistentVolume.enabled=true \
-            --set prometheus.server.persistentVolume.size=10Gi \
-            --set grafana.service.type=ClusterIP \
-            --values values.yaml
-
-      # Etapa 10: Aplicar manifestos para ingress controller
-      - name: Apply Grafana Ingress
-        run: |
-          kubectl apply -f grafana-ingress.yml
-      - name: Apply App Ingress
-        run: |
-          kubectl apply -f app-ingress.yml
+#      # Etapa 4: Build da aplicação
+#      - name: Build the application
+#        run: |
+#          ./mvnw clean package -DskipTests
+#
+#      # Etapa 5: Criação da imagem Docker
+#      - name: Build Docker image
+#        run: |
+#          docker build -t silviobassi/app-course:1.0.0 .
+#
+#      # Etapa 6: Autenticação no Docker Hub
+#      - name: Docker login
+#        run: |
+#          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+#
+#      # Etapa 7: Enviar imagem para o Docker Hub
+#      - name: Push Docker image to Docker Hub
+#        run: |
+#          docker push silviobassi/app-course:1.0.0
+#
+#      # Etapa 8: Aplicar manifestos do Kubernetes
+#      - name: Apply MySQL deployment
+#        run: |
+#          kubectl apply -f mysql-deployment.yml
+#      - name: Apply app deployment
+#        run: |
+#          kubectl apply -f app-deployment.yml
+#
+#      # Etapa 9: Instalar ferramentas de monitoramento
+#      - name: Install NGINX Ingress Controller
+#        run: |
+#          helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+#          helm repo update
+#          helm install nginx-ingress ingress-nginx/ingress-nginx --create-namespace --namespace ingress-nginx
+#
+#      - name: Install Prometheus and Grafana
+#        run: |
+#          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+#          helm repo update
+#          helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
+#            --namespace infnet-monitoring --create-namespace \
+#            --set adminUser=infnet \
+#            --set adminPassword=infnet \
+#            --set grafana.ingress.enabled=false \
+#            --set grafana.persistence.enabled=true \
+#            --set grafana.persistence.size=5Gi \
+#            --set prometheus.server.persistentVolume.enabled=true \
+#            --set prometheus.server.persistentVolume.size=10Gi \
+#            --set grafana.service.type=ClusterIP \
+#            --values values.yaml
+#
+#      # Etapa 10: Aplicar manifestos para ingress controller
+#      - name: Apply Grafana Ingress
+#        run: |
+#          kubectl apply -f grafana-ingress.yml
+#      - name: Apply App Ingress
+#        run: |
+#          kubectl apply -f app-ingress.yml
