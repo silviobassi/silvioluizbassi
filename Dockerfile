@@ -5,6 +5,8 @@ WORKDIR /app
 
 COPY files /app/files
 
+RUN ./mvnw clean package -DskipTests
+
 # Copiar o JAR gerado no estágio de build
 COPY target/*.jar /app/app-course.jar
 

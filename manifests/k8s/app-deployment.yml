@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app-course
-          image: silviobassi/app-course:1.8.1  # Substitua pelo nome correto da imagem
+          image: silviobassi/app-course:1.0.0 # Substitua pelo nome correto da imagem
           env:
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:mysql://mysql-svc:3306/silviobassi"
@@ -57,4 +57,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-  type: ClusterIP
+  type: LoadBalancer
